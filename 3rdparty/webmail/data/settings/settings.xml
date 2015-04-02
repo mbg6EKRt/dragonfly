@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<WindowTitle>EEM WebMail Lite</WindowTitle>
+	<AdminPassword>12345</AdminPassword>
+	<IncomingMailServer>localhost</IncomingMailServer>
+	<IncomingMailPort>110</IncomingMailPort>
+	<OutgoingMailServer>localhost</OutgoingMailServer>
+	<OutgoingMailPort>25</OutgoingMailPort>
+	<ReqSmtpAuth>0</ReqSmtpAuth>
+	<AllowAdvancedLogin>1</AllowAdvancedLogin>
+	<HideLoginMode>0</HideLoginMode>
+	<DefaultDomainOptional>localhost</DefaultDomainOptional>
+	<ShowTextLabels>1</ShowTextLabels>
+	<AutomaticCorrectLoginSettings>0</AutomaticCorrectLoginSettings>
+	<EnableLogging>0</EnableLogging>
+	<AllowAjax>1</AllowAjax>
+	<MailsPerPage>20</MailsPerPage>
+	<EnableAttachmentSizeLimit>1</EnableAttachmentSizeLimit>
+	<AttachmentSizeLimit>10000000</AttachmentSizeLimit>
+	<EnableMailboxSizeLimit>1</EnableMailboxSizeLimit>
+	<MailboxSizeLimit>10000000</MailboxSizeLimit>
+	<DefaultTimeZone>0</DefaultTimeZone>
+	<DefaultUserCharset>0</DefaultUserCharset>
+	<DefaultSkin>Light_Gray</DefaultSkin>
+	<DefaultLanguage>English</DefaultLanguage>
+	<ViewMode>3</ViewMode>
+</Settings>

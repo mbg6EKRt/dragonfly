@@ -1,0 +1,23 @@
+RewriteEngine ON
+
+#
+# Rewrite the url for embeded requests
+
+RewriteRule ^embed/(.*?)$ ajax.php?request=$1
+
+#
+# Rewrite the url for ajax requests
+
+RewriteRule ^ajax/(.*?)$ ajax.php?request=$1
+
+#
+# Rewrite the url for file requests
+
+RewriteRule ^file/(.*?)$ file.php?file=$1
+
+#
+# Rewrite all requests that are not physical files or directories
+
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*?)$ index.php?request=$1

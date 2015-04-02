@@ -1,0 +1,10 @@
+<test>
+	<someitem>
+		<title type="string">Har d har</title>
+		<description type="string"></description>
+	</someitem>
+	<someitem>
+		<title type="string">Blar d blar</title>
+		<description type="string">Blar blar d blar blar</description>
+	</someitem>
+</test>

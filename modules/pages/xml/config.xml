@@ -1,0 +1,102 @@
+<module>
+
+	<name>Pages</name>
+	<namespace>a1e56b1719819be07494b142bdac61ecc1b8685b</namespace>
+	<folder>pages</folder>
+	<file>mod.pages.php</file>
+	<class>pages</class>
+	
+	<table>
+	
+		<name>page</name>
+		<encoding>utf8_unicode_ci</encoding>
+		<comment>Stores page data such as name, description, file id, etc</comment>
+		
+		<column>
+			<name>id</name>
+			<type>integer</type>
+			<length>11</length>
+			<primary>1</primary>
+			<autoincrement>1</autoincrement>
+			<comment>The primary key.</comment>
+		</column>
+		
+		<column>
+			<name>name</name>
+			<type>varchar</type>
+			<length>255</length>
+			<comment>The name of the page.</comment>
+		</column>
+		
+		<column>
+			<name>description</name>
+			<type>text</type>
+			<comment>A short description of the page for use in the admin panel.</comment>
+		</column>
+		
+		<column>
+			<name>file_id</name>
+			<type>integer</type>
+			<length>11</length>
+			<comment>The ID of the file where the page content is stored.</comment>
+		</column>
+		
+		<column>
+			<name>search_terms</name>
+			<type>text</type>
+			<comment>A stripped down version of the page contents.</comment>
+		</column>
+		
+		<column>
+			<name>url_id</name>
+			<type>integer</type>
+			<length>11</length>
+			<comment>The ID of the url entry in the URL table.</comment>
+		</column>
+		
+		<column>
+			<name>meta_id</name>
+			<type>integer</type>
+			<length>11</length>
+			<comment>The ID of the meta data entry in the meta table.</comment>
+		</column>
+		
+		<column>
+			<name>created</name>
+			<type>integer</type>
+			<length>13</length>
+			<comment>A UNIX timestamp of when the page was first created.</comment>
+		</column>
+		
+		<column>
+			<name>modified</name>
+			<type>integer</type>
+			<length>13</length>
+			<comment>A UNIX timestamp of when the page was last modified.</comment>
+		</column>
+		
+	</table>
+	
+	<table>
+	
+		<name>site__page</name>
+		<encoding>utf8_unicode_ci</encoding>
+		<comment>This table stores relationships between pages and sites.</comment>
+		
+		<column>
+			<name>site_id</name>
+			<type>integer</type>
+			<length>11</length>
+			<comment>The site id.</comment>
+		</column>
+		
+		<column>
+			<name>page_id</name>
+			<type>integer</type>
+			<length>11</length>
+			<comment>The page id.</comment>
+		</column>
+		
+	</table>
+
+</module>

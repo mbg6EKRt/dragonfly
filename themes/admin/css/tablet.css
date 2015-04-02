@@ -1,0 +1,275 @@
+/*///////////////////////
+// Common styles
+*/
+
+body {
+	font-size: 16px;
+	font-family: Calibri, Verdana, sans-serif;
+	margin: 0;
+	padding: 0 0 20px 0;
+	background: url('../images/bg3.jpg') 0% 0% repeat;
+}
+
+table {
+	border-collapse: collapse;
+	padding: 0;
+}
+
+table td, table th {
+	/*padding: 5px;*/
+}
+
+table th {
+	text-align: left;
+}
+
+div {}
+
+h1, h2, h3, h4 {
+	margin: 15px 0px 15px 0px;
+}
+
+h1 {
+	font-size: 24px;
+	display: inline-block;
+}
+
+h2 {
+	font-size: 22px;
+}
+
+h3 {
+	font-size: 20px;
+}
+
+hr {
+	height: 3px;
+	border: 0;
+	background-color: #F0F0F0;
+	color: #F0F0F0;
+}
+
+.main {
+	width: 880px;
+	padding: 0;
+	border-radius: 7px;
+}
+
+.footer {
+	width: 880px;
+}
+
+.small {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+/*///////////////////////
+// Form styles
+*/
+
+label
+{
+	display: block;
+}
+
+label span
+{
+	line-height: 50px;
+	display: inline-block;
+	font-size: 15px;
+}
+
+input {
+	font: 15px;
+	padding: 10px;
+	box-shadow: 0 0 4px 1px #333333;
+	/* background: transparent; */
+	background:url('../../default/images/white_25.png') 0 0 repeat;
+}
+
+input[type="text"] {
+	border: 0px;
+	border-radius: 4px;
+}
+
+input[type="submit"],.submit {
+	border-radius: 4px;
+	background-color: #474D54;
+}
+
+input[type="submit"]:hover,.submit:hover  {
+	border-radius: 4px;
+	background-color: #0059A6;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+input[type=checkbox]{
+	box-shadow: 0 0 0 0 #FFFFFF;
+}
+
+textarea {
+	font: 15px;
+	border-radius: 4px;
+	width: 200px;
+	height: 60px;
+	padding: 10px;
+	box-shadow: 0 0 4px 1px #333333;
+	/* background: transparent; */
+	background:url('../../default/images/white_25.png') 0 0 repeat;
+	border: 0;
+}
+
+select {
+	font: 15px;
+	border: 1px;
+	border-radius: 4px;
+	padding: 10px;
+	box-shadow: 0 0 4px 1px #333333;
+	/* background: transparent; */
+	background:url('../../default/images/white_25.png') 0 0 repeat;
+}
+
+/*////////////////////////////
+// Isotope style
+*/
+
+/**** Isotope Filtering ****/
+
+.isotope-item {
+	z-index: 2;
+	width: 160px;
+	height: 125px;
+	margin: 7px;
+	padding: 10px 0 10px 0;
+	text-align: center;
+	font: bold 14px Arial;
+	/* border: 1px solid #ffffff; */
+}
+
+.isotope-item img {
+	max-width: 100px;
+	max-height: 100px;
+}
+
+.grid2x2 { z-index: 2; width: 318px; height: 284px; margin: 7px; padding: 10px; background-color: #fff; }
+.grid2x3 { z-index: 2; width: 318px; height: 443px; margin: 7px; padding: 10px; background-color: #fff; }
+.grid2x4 { z-index: 2; width: 318px; height: 602px; margin: 7px; padding: 10px; background-color: #fff; }
+.grid3x2 { width: 330px; height: 340px; }
+.grid3x3 { width: 330px; height: 340px; }
+.grid3x4 { width: 330px; height: 340px; }
+.grid4x2 { width: 330px; height: 340px; }
+.grid4x3 { width: 330px; height: 340px; }
+.grid4x4 { width: 330px; height: 340px; }
+
+.frame {
+	width: 860px;
+	height: auto;
+  	padding: 0;
+	font: 15px Arial;
+	text-align: left;
+	background: transparent;
+	position:relative;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/**** Isotope CSS3 transitions ****/
+
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+       -o-transition-property:         top, left, opacity;
+          transition-property:         transform, opacity;
+}
+
+/*///////////////////////
+// Menu
+*/
+
+.menu {
+	border-collapse: collapse;
+	padding: 0 0 10px 0;
+}
+
+.menu td {
+}
+
+.menu a {
+	font: bold 14px sans-serif;
+	color: #474D54;
+	text-decoration: none;
+	text-align: center;
+	border-radius: 0 0 10px 10px;
+	line-height: 45px;
+	width: 100px;
+	display:inline-block;
+	margin: 0 2px 0 2px;
+}
+
+.menu a:hover {
+	color: #FFFFFF;
+	text-decoration: none;
+	background-color: #0059A6;
+	border-radius: 0 0 10px 10px;
+	line-height: 45px;
+	width: 100px;
+	display:inline-block;
+	margin: 0 2px 0 2px;
+}
+
+.link-icon {
+	margin-bottom: -13px;
+	max-height: 32px;
+	max-width: 32px;
+}
+
+/*///////////////////////
+// Tab Menu
+*/
+
+.tab {
+	padding: 20px;
+	width: 860px;
+	border-radius: 4px;
+	margin: 10px 0 0 0;
+}
+
+.tab h2 {
+	margin: 0 0 10px 0;
+	font-size: 22px;
+	padding-bottom: 5px;
+}
+
+.tab table td { padding: 5px 0px 5px 0px; }
+
+.tabmenu a {
+	height: 38px;
+	line-height: 38px;
+	padding: 10px 20px 10px 20px;
+	font-weight: bold;
+	border-radius: 4px;
+}
+
+.tabmenu a:hover {
+	background-color: #0059A6;
+}

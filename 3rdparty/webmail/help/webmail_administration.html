@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta HTTP-EQUIV="Content-Type" Content="text-html; charset=iso8859-1">
+		<link rel="stylesheet" href="help_styles.css" type="text/css">
+	</head>
+	<body>
+		<br>
+		<p class="wmh_header" align="center">WebMail administration</p>
+		<p class="wmh_reg">
+			WebMail administration performs just through the single <b>Administration Console</b>.<br>
+			<br>
+			Navigate to "http://path_to_webmail/mailadm.php" page in your 
+			browser. Use "mailadm" as Login name.<br>
+			Type your default admin password "12345". It is strongly recommended to change 
+			this password.<br>
+			<br>
+			After login <b>Administration Console</b>
+			appears with the following menu:
+		<p class="wmh_reg" />&nbsp;
+		<p class="wmh_reg" />
+			<b>Administration Console:</b><br>
+			<br>
+			<table border="0" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
+				<tr>
+					<td class="wmh_desc_header" width="220">Value</td>
+					<td class="wmh_desc_header">Description</td></tr>
+				<tr>
+					<td class="wmh_desc_content"><a href="#3">WebMail settings</a></td>
+					<td class="wmh_desc_content">Use this section to set settings of WebMail 
+						system, such as Site Name, POP3/SMTP Servers and other default settings.</td>
+				</tr>
+				<tr>
+					<td class="wmh_desc_content"><a href="#4">Interface settings</a></td>
+					<td class="wmh_desc_content">
+						Customize WebMail's look and feel: skin, default language, etc.
+					</td>
+				</tr>
+				<tr>
+					<td class="wmh_desc_content"><a href="#5">Login settings</a></td>
+					<td class="wmh_desc_content">
+						Customize login window look and functionality.
+					</td>
+				</tr>
+				<tr>
+					<td class="wmh_desc_content"><a href="#6">Debug settings</a></td>
+					<td class="wmh_desc_content">
+						Logging mail sessions into a file, etc.
+					</td>
+				</tr>
+			</table>
+		<p class="wmh_reg" />&nbsp;
+		<p class="wmh_reg" />
+			Folowing items of top menu are available:
+			<table border="0" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
+				<tr>
+					<td class="wmh_desc_header" width="220">Value</td>
+					<td class="wmh_desc_header">Description</td></tr>
+				<tr>
+					<td class="wmh_desc_content">Return to mail login form</td>
+					<td class="wmh_desc_content">
+						Exits WebMail administration panel, and opens user login page.
+					</td>
+				</tr>
+				<tr>
+					<td class="wmh_desc_content">Help</td>
+					<td class="wmh_desc_content">
+						Opens WebMail documentation.
+					</td>
+				</tr>
+				<tr>
+					<td class="wmh_desc_content">Logout</td>
+					<td class="wmh_desc_content">
+						Exits WebMail administration panel, and returns to the administration login page.
+					</td>
+				</tr>
+			</table>
+		<p class="wmh_reg" />&nbsp;
+		<p class="wmh_reg" />		
+			<a name="3" class="wmh_txt"><b>WebMail Settings</b></a> section.
+			<blockquote>
+				Here you can set some parameters and default values.<br>
+				<br>
+				<table border="0" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
+					<tr>
+						<td class="wmh_desc_header" width="220">Value</td>
+						<td class="wmh_desc_header">Description</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Site name</td>
+						<td class="wmh_desc_content">Title that will be shown in browser's header.</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Incoming mail</td>
+						<td class="wmh_desc_content">Incoming mail server name or IP, such as "pop.server.com".</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Incoming mail port</td>
+						<td class="wmh_desc_content">Incoming mail server port (110 by default).</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Outgoing mail</td>
+						<td class="wmh_desc_content">Outgoing mail server name or IP, such as "smtp.server.com".</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Outgoing mail Port</td>
+						<td class="wmh_desc_content">Outgoing mail server port (25 by default).</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Requires SMTP authentication</td>
+						<td class="wmh_desc_content">If checked, SMTP authentication will be enabled by default.</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Attachment size limit</td>
+						<td class="wmh_desc_content">
+							Specifies maximum allowed size (in bytes) of the file 
+							to be attached to the message during composing. If the 
+							attachment file size exceeds specified limit, it will be rejected
+							(Note that your web server may also imply certain restirictions on maximum size of the data being uploaded. See <a href="faq.html">FAQ</a> for details).
+						</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Enable mailbox size limit</td>
+						<td class="wmh_desc_content">
+							Specifies whatever to limit mailbox size or not. 
+							Set it to the value of user's maximum mailbox size (in bytes).
+						</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Default user charset</td>
+						<td class="wmh_desc_content">
+							Default charset for assigned to messages composed by the user.
+						</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Default user time offset</td>
+						<td class="wmh_desc_content">
+							Default Timezone Offset.
+						</td></tr>
+					<tr>
+						<td class="wmh_desc_content">New administration password</td>
+						<td rowspan="2" class="wmh_desc_content">Specifies WebMail Administrator password.
+							Sets to default value "12345" after WebMail installation. It is strongly recommended to change
+							it after installation.
+							If these fields are left blank, existing password remains unchanged.</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Confirm password</td>
+					</tr>
+				</table>
+			</blockquote>
+		<p class="wmh_reg" />&nbsp;
+		<p class="wmh_reg" />		
+			<a name="4" class="wmh_txt"><b>Interface Settings</b></a> section.
+			<blockquote>
+				<table border="0" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
+					<tr>
+						<td class="wmh_desc_header" width="220">Value</td>
+						<td class="wmh_desc_header">Description</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Mails per page</td>
+						<td class="wmh_desc_content">
+							Mail list is divided into pages. Each page holds specified number of mail messages to display.
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Default skin</td>
+						<td class="wmh_desc_content">
+							Specifies default skin for WebMail appearance.
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Default language</td>
+						<td class="wmh_desc_content">
+							Default interface language.
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Show text labels</td>
+						<td class="wmh_desc_content">
+							If checked, text labels will be displayed for the icons on toolbars.
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Allow AJAX Version</td>
+						<td class="wmh_desc_content">
+							If checked, AJAX interface will be enabled.
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Messages list with preview pane</td>
+						<td class="wmh_desc_content">
+							If checked, message preview pane will be displayed below messages list.
+						</td>
+					</tr>
+				</table>
+			</blockquote>
+		<p class="wmh_reg" />&nbsp;
+		<p class="wmh_reg" />		
+			<a name="5" class="wmh_txt"><b>Login Settings</b></a> section.
+			<blockquote>
+				<table border="0" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
+					<tr>
+						<td class="wmh_desc_header" width="220">Value</td>
+						<td class="wmh_desc_header">Description</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Standard Login Panel</td>
+						<td class="wmh_desc_content">
+							All fields are displayed (email, login, password).
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Hide login field</td>
+						<td class="wmh_desc_content">
+							Hide login field and take it from email:
+							<ol>
+								<li>
+									Use Email as Login - whole email address is used as login 
+									(e.g. if email is <b>jdoe@domain.com</b>, login will be <b>jdoe@domain.com</b>)
+								</li>
+								<li>
+									Use Account Name as Login - truncate email 
+									address from "@" and use the remainder 
+									(e.g. if email is <b>jdoe@domain.com</b>, login will be <b>jdoe</b>)
+								</li>
+							</ol>
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Hide email field</td>
+						<td class="wmh_desc_content">
+							Hide Email field and build e-mail address from login field and, optionally, from <b>domain</b>
+							<ol>
+								<li>
+									Display Domain After Login Field - on login form, 
+									"@"<b>domain</b> will be displayed after login field. This 
+									parameter affects only visual look of login panel. 
+									Decision on how to build login or email address is not altered.
+								</li>
+								<li>
+									If ticked, WebMail will construct email account login 
+									as concatenation of <b>Login field contents</b> + "@" + <b>domain</b>. 
+									You should use this if logins on your mail server look 
+									like <b>jdoe@domain.com</b> (i.e. they are the same as email address). 
+									Do NOT use this option if logins look like <b>jdoe</b> (e.g. just 
+									account name, without domain).
+								</li>
+							</ol>
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Allow advanced login</td>
+						<td class="wmh_desc_content">
+							If checked, clients of the WebMail system will be able to use the 
+							system with POP3/SMTP servers different from specified in POP3/SMTP Server settings.
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Automatically detect and correct if user inputs e-mail instead of account-name.</td>
+						<td class="wmh_desc_content">
+							Allow WebMail to detect and fix when user inputs email instead of login, 
+							or login instead of email, and it's possible to determine correct login 
+							or e-mail from typed. Example: if user inputs full email address in Login 
+							field (while only account name is expected), WebMail will automatically 
+							drop @domain part.
+						</td>
+					</tr>
+				</table>
+			</blockquote>
+		<p class="wmh_reg" />&nbsp;
+		<p class="wmh_reg" />		
+			<a name="6" class="wmh_txt"><b>Debug Settings</b></a> section.
+			<blockquote>
+				<table border="0" cellpadding="4" cellspacing="0" style="border-collapse:collapse;">
+					<tr>
+						<td class="wmh_desc_header" width="220">Value</td>
+						<td class="wmh_desc_header">Description</td></tr>
+					<tr>
+						<td class="wmh_desc_content">Enable Logging</td>
+						<td class="wmh_desc_content">
+							Enable logging of mail operations (POP3/SMTP) into a file. 
+							Path For Log box specifies physical location (e.g. C:\Data\log.txt for Windows or /pub/webmail/data/log.txt for Unix)
+							 where to create the log.
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Clear log</td>
+						<td class="wmh_desc_content">
+							Clear log file.
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Show all log</td>
+						<td class="wmh_desc_content">
+							Show all log records.
+						</td>
+					</tr>
+					<tr>
+						<td class="wmh_desc_content">Show log (last records)</td>
+						<td class="wmh_desc_content">
+							Show last 50K of log records.
+						</td>
+					</tr>
+				</table>
+			</blockquote>
+			<br>
+			<hr>
+		<p class="wmh_reg" align="center">
+			If you have any questions don't hesitate to email to <a href="mailto:support@afterlogic.com">support@afterlogic.com</a><br>
+			Or visit our support web page at <a href="http://www.afterlogic.com/support" target="_blank">http://www.afterlogic.com/support</a><br>
+			or web forum at <a href="http://www.afterlogic.com/forum" target="_blank">http://www.afterlogic.com/forum</a>
+		</p>
+	</body>
+</html>

@@ -1,0 +1,911 @@
+<?php
+
+namespace lib;
+
+/**
+ * The Filesystem Class
+ */
+class files
+{
+/**
+* The table in the database to store file information
+*/
+	var $Table;
+
+/**
+* The reference to use in the bridge table
+*/
+	var $Reference;
+
+/**
+* The permissions to use writing to the filesystem
+*/
+	var $WritePermissions;
+
+/**
+* The default relative path to store files
+*/
+	var $DefaultPath;
+
+/**
+* Icons for different file types
+*/
+	var $FiletypeIcons;
+
+/**
+* An array containing a list of MIME types
+*/
+	var $MIMETypes;
+
+/**
+* The constructor
+*/
+    function __construct()
+    {
+        $this->Table = 'files';
+		$this->Reference = 'file';
+        $this->WritePermissions = 0777;
+		$this->DefaultPath = 'media';
+
+		// File Type Icons
+
+		$this->FiletypeIcons = Array('Image' => 'picture.png',
+									 'Html' => 'page_code.png',
+									 'Word' => 'page_word.png',
+									 'Powerpoint' => 'page_white_powerpoint.png',
+									 'Excel' => 'page_excel.png',
+									 'PDF' => 'page_white_acrobat.png',
+									 'Flash' => 'page_white_flash.png',
+									 'Program' => 'page_white_gear.png',
+									 'Text' => 'page_white_text.png');
+
+		// Init MIME Types Array
+
+		$this->MIMETypes = Array();
+
+    }//FileSystem
+
+/**
+* Create the required html to render a file of type $Handler
+*/
+	function DisplayFile($Irn, $Handler = NULL, $Link = NULL, $Target = '_blank', $Params = NULL)
+	{
+		if (!empty($Irn)) {
+
+			global $DBase;
+			global $Paths;
+
+			// Get details, determine handler, and display $Link
+
+			$File = $DBase->getRow('SELECT * FROM '.$this->Table.' WHERE FIL_IRN='.$Irn);
+
+			if ($Handler == NULL) { $Handler = $this->GetMediaType($File['FIL_FILE']); }//if
+			if (!empty($Link)) { echo "<a href='".$Link."' target='".$Target."' style='border: 0px;'>"; }//if
+			if (is_array($Params)) {
+				$PArr = $Params;
+				$Params = '';
+				foreach ($PArr as $PID => $Param) {
+					if (is_numeric($PID)) $Params = $Params.' '.$Param;
+					else $Params = $Params.' '.$PID.'="'.$Param.'"';
+				}//foreach
+			}//if
+			else $Params = ' '.$Params;
+			$Params = trim($Params);
+
+			// Return html
+
+			switch ($Handler) {
+
+			  	// Link to file
+
+				case 'Href':
+					/* ?><a href='<?php echo $Paths->GetPath('RootUrl', 'download.php?Irn='.$Irn); ?>' title='<?php echo $File['FIL_DESCRIPTION']; ?>'><?php echo $File['FIL_NAME']; ?></a><?php */
+					?><a href='<?php echo $Paths->GetPath('RootUrl', 'download/'.$Irn); ?>' title='<?php echo $File['FIL_DESCRIPTION']; ?>'><?php echo $File['FIL_NAME']; ?></a><?php
+				break;
+
+				// Images
+
+				case 'Image':
+					/* ?><img src='<?php echo $Paths->GetPath('RootUrl', 'download.php?Irn='.$File['FIL_IRN'].'&Disposition=inline'); ?>'><?php */
+					?><img src='<?php echo $Paths->GetPath('RootUrl', 'download/'.$File['FIL_IRN'].'/inline'); ?>'<?php echo $Params; ?>><?php
+				break;
+
+				// Flash
+
+			  	case 'Flash':
+
+					?><embed src='<?php echo $Paths->GetPath('RootUrl', 'download/'.$File['FIL_IRN'].'/inline'); ?>'<?php if (is_array($Params) && array_key_exists('Width', $Params)) { ?> width='<?php echo $Params['Width']; ?>'<?php } if (is_array($Params) && array_key_exists('Height', $Params)) { ?> height='<?php echo $Params['Height']; ?>'<?php } ?><?php if (!is_array($Params)) echo ' '.$Params; ?>></embed><?php
+
+			  	break;
+
+			  	// Html/PHP
+
+			  	case 'Html': include $Paths->GetPath('Root', $File['FIL_PATH'].'/'.$File['FIL_IRN'].'/'.$File['FIL_FILE']); break;
+
+			  	// Javascript
+
+			  	case 'Javascript':
+			  		//echo '<script language="javascript" type="text/javascript" src="'.$Paths->GetPath('RootUrl', 'download.php?Irn='.$File['FIL_IRN'].'&Disposition=inline').'"></script>';
+			  		echo '<script language="javascript" type="text/javascript" src="'.$Paths->GetPath('RootUrl', 'download/'.$File['FIL_IRN'].'/inline').'"></script>';
+			  	break;
+
+			}//switch
+
+			// Close $Link tag
+
+			if (!empty($Link)) { echo "</a>"; }//if
+
+		}//if
+		else return FALSE;
+
+	}//DisplayFile
+
+/**
+* Return the html required to display a file of type $Handler
+*/
+	function ReturnFile($Irn, $Handler = NULL, $Link = NULL, $Target = '_blank', $Params = NULL)
+	{
+		global $Buffer;
+
+		$Buffer->Start();
+		$this->DisplayFile($Irn, $Handler, $Link, $Target, $Params);
+		$RetStr = $Buffer->Read();
+		$Buffer->Clear();
+
+		return $RetStr;
+
+	}//ReturnFile
+
+/**
+* Get meta information about a file specified by it's id
+*/
+	function GetFileDetails($Irn)
+	{
+		global $DBase;
+        global $Paths;
+
+		// Get file details
+
+		if ($TheFile = $DBase->getRow('SELECT * FROM '.$this->Table.' WHERE FIL_IRN='.$Irn)) {
+
+            $Path = $Paths->GetPath('Root', $TheFile['FIL_PATH'].'/'.$TheFile['FIL_IRN'].'/'.$TheFile['FIL_FILE']);
+            $Url = $Paths->GetPath('RootUrl', $TheFile['FIL_PATH'].'/'.$TheFile['FIL_IRN'].'/'.$TheFile['FIL_FILE']);
+
+            $TheFile['FIL_FULLPATH'] = $Path;
+            $TheFile['FIL_FULLURL'] = $Url;
+            if (file_exists($Path)) $TheFile['FIL_SIZE'] = $this->fsize($Path);
+			else $TheFile['FIL_SIZE'] = 0;
+            //$TheFile['FIL_MIMETYPE'] = $this->GetMIMEType($Path);
+            $TheFile['FIL_MEDIATYPE'] = $this->GetMediaType($Path);
+            if (array_key_exists($TheFile['FIL_MEDIATYPE'], $this->FiletypeIcons)) $TheFile['FIL_ICON'] = $this->FiletypeIcons[$TheFile['FIL_MEDIATYPE']];
+			else $TheFile['FIL_ICON'] = '';
+
+			return $TheFile;
+
+        }
+		else return FALSE;
+
+	}//GetFileDetails
+
+/**
+* Get the mime type of a file
+*/
+	function GetMIMEType($FileName)
+	{
+		if (empty($this->MIMETypes)) $this->LoadMimeTypes();
+
+		// Get filetype of current file
+
+		$FileParts = explode(".", $FileName);
+		$NumParts = (count($FileParts) - 1);
+		$Extention = '.'.strtolower($FileParts[$NumParts]);
+
+		if (!empty($FileName) and array_key_exists($Extention, $this->MIMETypes))
+			$MIMEType = $this->MIMETypes[$Extention];
+
+		// Return MIME type
+
+		return $MIMEType;
+
+	}//GetMIMEType
+
+/**
+* Get the media type (aka the handler) for a file type
+*/
+	function GetMediaType($Filename)
+	{
+		// Get filetype of current file
+
+		$FileParts = explode(".", $Filename);
+		$NumParts = (count($FileParts) - 1);
+		$Extention = strtoupper($FileParts[$NumParts]);
+
+		// Set file extentions
+
+		$FileExtentions = Array();
+
+		// Images
+
+		$FileExtentions['JPG'] 		= 'Image';
+		$FileExtentions['JPEG'] 	= 'Image';
+		$FileExtentions['GIF'] 		= 'Image';
+		$FileExtentions['PNG'] 		= 'Image';
+        $FileExtentions['BMP']      = 'Image';
+        $FileExtentions['TIF']      = 'Image';
+        $FileExtentions['TIFF']     = 'Image';
+
+		// Video
+
+		$FileExtentions['MPG'] 		= 'Windows Video';
+		$FileExtentions['MPEG'] 	= 'Windows Video';
+		$FileExtentions['AVI']		= 'Windows Video';
+        $FileExtentions['WMV']      = 'Windows Video';
+        $FileExtentions['MOV']		= 'Quicktime Video';
+        $FileExtentions['QT']		= 'Quicktime Video';
+
+        // Audio
+
+        $FileExtentions['MP3']      = 'Audio';
+        $FileExtentions['WMA']      = 'Audio';
+        $FileExtentions['WAV']      = 'Audio';
+        $FileExtentions['OGG']      = 'Audio';
+
+		// Flash
+
+		$FileExtentions['SWF'] 		= 'Flash';
+		$FileExtentions['FLA'] 		= 'Flash';
+
+		// HTML/PHP
+
+		$FileExtentions['HTM'] 		= 'Html';
+		$FileExtentions['HTML']		= 'Html';
+		$FileExtentions['PHP']		= 'Html';
+		$FileExtentions['PHP3']		= 'Html';
+		$FileExtentions['PHP4']		= 'Html';
+		$FileExtentions['INC']		= 'Html';
+
+		// Javascript
+
+		$FileExtentions['JS']		= 'Javascript';
+
+        // Download only types
+
+        $FileExtentions['EXE']      = 'Program';
+        $FileExtentions['DOC']      = 'Word';
+        $FileExtentions['DOCX']     = 'Word';
+        $FileExtentions['PDF']      = 'PDF';
+        $FileExtentions['PPT']      = 'Powerpoint';
+        $FileExtentions['MDB']      = 'Access';
+        $FileExtentions['XLS']      = 'Excel';
+        $FileExtentions['TXT']      = 'Text';
+        $FileExtentions['RTF']      = 'Rich Text';
+
+		// Archives
+
+        $FileExtentions['ZIP']      = 'Archive';
+        $FileExtentions['GZ']       = 'Archive';
+        $FileExtentions['TGZ']      = 'Archive';
+        $FileExtentions['7z']       = 'Archive';
+        $FileExtentions['ACE']      = 'Archive';
+        $FileExtentions['RAR']      = 'Archive';
+
+		// Return the media type
+
+		if (array_key_exists($Extention, $FileExtentions)) return $FileExtentions[$Extention];
+		else return 'Href';
+
+	}//GetMediaType
+
+/**
+* Get an array of file actions for a file type
+*/
+	function GetMediaActions($Irn, $Type)
+	{
+		global $Paths;
+
+		$Actions = Array();
+		$Type = strtoupper($Type);
+
+		switch ($Type) {
+
+			// Image
+
+			case 'IMAGE':
+				//$Actions['View'] = $Paths->GetPath('RootUrl', 'download.php?Irn='.$Irn.'&Disposition=inline');
+				$Actions['View'] = $Paths->GetPath('RootUrl', 'download/'.$Irn.'/inline');
+			break;
+
+		}//switch
+
+		// All types are downloadable
+
+		//$Actions['Download'] = $Paths->GetPath('RootUrl', 'download.php?Irn='.$Irn);
+		$Actions['Download'] = $Paths->GetPath('RootUrl', 'download/'.$Irn);
+
+		return $Actions;
+
+	}//GetMediaActions
+
+/**
+* Get the contents of a file by specifying it's id
+*/
+	function GetFileContent($Irn)
+    {
+        if (!empty($Irn)) {
+
+			global $Paths;
+
+			// Get the file details
+
+			$File = $this->GetFileDetails($Irn);
+			$Filename = $Paths->GetPath('Root', $File['FIL_PATH'].'/'.$File['FIL_IRN'].'/'.$File['FIL_FILE']);
+
+			// Get contents and return
+
+			if ($FileContent = file_get_contents($Filename)) return $FileContent;
+			else return FALSE;
+
+		}//if
+		else return '';
+
+    }//GetFileContent
+
+/**
+* Write some content to a file by specifying it's id
+*/
+	function WriteFileContent($Irn, $Content, $Path = NULL, $Name = NULL, $Desc = NULL, $FileExtension = 'html')
+    {
+		global $Paths;
+		global $DBase;
+
+		// Get the file details
+
+		if (!empty($Irn)) {
+			$File = $this->GetFileDetails($Irn);
+			$Filename = $File['FIL_FULLPATH'];
+			$FIL_FILE = $Irn.'.'.$FileExtension;
+
+			// Check if file name has changed
+
+			if ($FIL_FILE != $File['FIL_FILE']) {
+				$DBase->query("UPDATE ".$this->Table." SET FIL_FILE='".$FIL_FILE."' WHERE FIL_IRN=".$Irn);
+				@unlink($Filename);
+				$File = $this->GetFileDetails($Irn);
+				$Filename = $File['FIL_FULLPATH'];
+				file_put_contents($Filename, '');
+			}//if
+
+		}//if
+		else {
+
+			// If we are writing a new file, then create one first
+
+			if (empty($Path)) $Path = $this->DefaultPath;
+			if (empty($Name)) $Name = 'System file';
+			if (empty($Desc)) $Desc = 'Written by the system.';
+
+			$DBase->query("INSERT INTO ".$this->Table." (FIL_NAME, FIL_DESCRIPTION, FIL_PATH, FIL_DATE, FIL_STATS)
+						   VALUES('".$Name."', '".$Desc."', '".$Path."', '".mktime()."', '')");
+
+			$Irn = $DBase->lastIrn();
+			$FIL_FILE = $Irn.'.'.$FileExtension;
+
+			$DBase->query("UPDATE ".$this->Table." SET FIL_FILE='".$FIL_FILE."' WHERE FIL_IRN=".$Irn);
+
+            $File = $this->GetFileDetails($Irn);
+			$Filename = $File['FIL_FULLPATH'];
+			$RootPath = $Paths->GetPath('Root', $Path);
+
+            // Check directory exists, if not, create it
+
+			if (!file_exists($RootPath)) { if (!mkdir($RootPath, $this->WritePermissions)) { return FALSE; } }//if
+	        if (!file_exists($RootPath.'/'.$Irn)) { if (!mkdir($RootPath.'/'.$Irn, $this->WritePermissions)) { return FALSE; } }//if
+
+			// Create the new file
+
+			file_put_contents($Filename, '');
+
+		}//else
+
+		// Make sure file is writeable
+
+		$this->CheckPermissions($Filename, $this->WritePermissions);
+
+		// Write $Content to file and return the Irn
+
+		if (($FileSize = file_put_contents($Filename, $Content)) > 0) return $Irn;
+		else if (empty($Content)) return $Irn;
+		else return FALSE;
+
+    }//WriteFileContent
+
+/**
+* Get info for an uploaded file from the $_FILES superglobal
+*/
+	function GetUploadedFile($Name, $Index = NULL)
+    {
+		if ($Index == NULL) {
+
+			if (array_key_exists($Name, $_FILES) && (!empty($_FILES[$Name]['name']))) return $_FILES[$Name];
+			else return FALSE;
+
+		}//if
+		else {
+
+			if ((array_key_exists($Index, $_FILES)) && (array_key_exists($Name, $_FILES[$Index]))) {
+
+				foreach ($_FILES[$Name] as $Option => $Index) { $FileArr[$Option] = $_FILES[$Name][$Option][$Index]; }
+				return $FileArr;
+
+			}//if
+			else return FALSE;
+
+		}//else
+
+    }//GetUploadedFile
+
+/**
+* Save an uploaded file and return a file id
+*/
+	function SaveFile($File, $Path = 'media', $Name = '', $Desc = '', $Irn = 0)
+    {
+		global $DBase;
+		global $Paths;
+
+		// Make sure we have uploaded file details
+
+		if (!is_array($File)) { $File = $this->GetUploadedFile($File); }//if
+		if (empty($File)) return FALSE;
+		$File['name'] = $this->FormatFileName($File);
+
+        // Check root path (from $Path)
+
+        $RootPath = $Paths->GetPath('Root', $Path);
+        $this->CheckPermissions($RootPath, $this->WritePermissions);
+
+		// Add file to database or update file details
+
+		if (empty($Irn)) {
+
+			$Qry = "INSERT INTO ".$this->Table." (FIL_NAME, FIL_DESCRIPTION, FIL_FILE, FIL_PATH, FIL_DATE, FIL_STATS)
+					VALUES('".$Name."','".$Desc."','".$File['name']."','".$Path."','".mktime()."','')";
+
+		}//if
+		else {
+
+			// Get file details and delete the old file
+
+			$OldFile = $this->GetFileDetails($Irn);
+			@unlink($OldFile['FIL_FULLPATH']);
+
+			// Update file details
+
+			$Qry = "UPDATE ".$this->Table." SET
+					FIL_NAME='".$Name."',
+					FIL_DESCRIPTION='".$Desc."',
+					FIL_FILE='".$File['name']."',
+					FIL_PATH='".$Path."',
+					FIL_DATE='".mktime()."'
+					WHERE FIL_IRN=".$Irn;
+
+		}//else
+
+		$DBase->query($Qry, FALSE);
+
+        // Setup vars
+
+		if (empty($Irn)) $Irn = $DBase->lastIrn();
+		$Path = $Paths->GetPath('Root', $Path.'/'.$Irn);
+		$FullFilename = $Path.'/'.$File['name'];
+
+		// Check directory exists, if not, create it
+
+		if (!file_exists($RootPath)) {
+			if (!mkdir($RootPath, $this->WritePermissions)) { return FALSE; }//if
+		}//if
+
+        if (!file_exists($Path)) {
+			if (!mkdir($Path, $this->WritePermissions)) { return FALSE; }//if
+		}//if
+
+        // Set permissions
+
+        $this->CheckPermissions($Path, $this->WritePermissions);
+
+		// Check if file exists, if so, delete it
+
+		if (file_exists($FullFilename)) {
+		    $this->CheckPermissions($FullFilename, $this->WritePermissions);
+        	if (!unlink($FullFilename)) return FALSE;
+		}//if
+
+		// Move the new file
+
+		if (move_uploaded_file($File['tmp_name'], $FullFilename)) {
+			$this->CheckPermissions($FullFilename, $this->WritePermissions);
+			return $Irn;
+		}//if
+		else {
+        	$DBase->query('DELETE FROM '.$this->Table.' WHERE FIL_IRN='.$Irn);
+            return FALSE;
+        }//else
+
+    }//SaveFile
+
+/**
+* Save some content to a new file
+*/
+	function SaveContent($Content, $FileName = '', $Path = '', $Name = '', $Desc = '')
+	{
+		global $DBase;
+		global $Paths;
+
+		if (empty($Path)) $Path = $this->DefaultPath;
+
+        // Check root path (from $Path)
+
+        $RootPath = $Paths->GetPath('Root', $Path);
+        $this->CheckPermissions($RootPath, $this->WritePermissions);
+
+		// Add a file to the database
+
+		$Qry = "INSERT INTO ".$this->Table." (FIL_NAME, FIL_DESCRIPTION, FIL_FILE, FIL_PATH, FIL_DATE, FIL_STATS)
+				VALUES('$Name','$Desc','','".$Path."','".mktime()."','')";
+
+		$DBase->query($Qry);
+		$Irn = $DBase->lastIrn();	// Get the IRN of the file
+
+		if (!empty($Irn)) {
+
+			if (empty($FileName)) $FileName = $Irn.'.html';
+			$FileName = $this->FormatFileName($FileName);
+
+			// Update file name
+
+			$Qry = "UPDATE ".$this->Table." SET FIL_FILE='".$FileName."' WHERE FIL_IRN=".$Irn;
+			$DBase->query($Qry);
+
+	        // Setup vars
+
+			$Path = $Paths->GetPath('Root', $Path.'/'.$Irn);
+			$FullFilename = $Path.'/'.$FileName;
+
+			// Check directory exists, if not, create it
+
+			if (!file_exists($RootPath)) {
+				if (!mkdir($RootPath, $this->WritePermissions)){
+		        	$DBase->query('DELETE FROM '.$this->Table.' WHERE FIL_IRN='.$Irn);
+		            return FALSE;
+		        }//else
+			}//if
+
+	        if (!file_exists($Path)) {
+				if (!mkdir($Path, $this->WritePermissions)){
+		        	$DBase->query('DELETE FROM '.$this->Table.' WHERE FIL_IRN='.$Irn);
+		            return FALSE;
+		        }//else
+			}//if
+
+	        // Set permissions
+
+	        $this->CheckPermissions($Path, $this->WritePermissions);
+
+			// Check if file exists, if so, delete it
+
+			if (file_exists($FullFilename)) {
+			    $this->CheckPermissions($FullFilename, $this->WritePermissions);
+	        	if (!unlink($FullFilename)) {
+		        	$DBase->query('DELETE FROM '.$this->Table.' WHERE FIL_IRN='.$Irn);
+		            return FALSE;
+		        }//else
+			}//if
+
+			// Write the new file
+
+			if ($this->DirectWrite($FullFilename, $Content)) {
+				$this->CheckPermissions($FullFilename, $this->WritePermissions);
+				return $Irn;
+			}//if
+			else {
+	        	$DBase->query('DELETE FROM '.$this->Table.' WHERE FIL_IRN='.$Irn);
+	            return FALSE;
+	        }//else
+
+		}//if
+		else return FALSE;
+
+	}//SaveContent
+
+/**
+* Delete a file
+*/
+	function DeleteFile($Irn, $Reference = 'file')
+    {
+		global $DBase;
+		global $Paths;
+		global $Bridge;
+
+		if (!empty($Irn)) {
+
+			$Success = TRUE;
+
+			// Get file details
+
+			$File = $DBase->getRow('SELECT * FROM '.$this->Table.' WHERE FIL_IRN='.$Irn, FALSE);
+			$Path = $Paths->Root.'/'.$File['FIL_PATH'].'/'.$Irn;
+			$FullFilename = $Path.'/'.$File['FIL_FILE'];
+
+			// Delete database record and references in the bridge
+
+            if (!$DBase->query('DELETE FROM '.$this->Table.' WHERE FIL_IRN='.$Irn, FALSE)) { $Success = FALSE; }//if
+			if (!empty($Reference)) {
+				if (!$Bridge->DeleteReferences($Reference, $Irn)) { $Success = FALSE; }//if
+			}//if
+
+            // Make sure we can delete the file
+
+			$this->CheckPermissions($FullFilename, $this->WritePermissions);
+			$this->CheckPermissions($Path, $this->WritePermissions);
+
+			// Delete the physical file
+
+			@unlink($FullFilename);
+			@rmdir($Path);
+
+			// Return result
+
+			return $Success;
+
+		}//if
+		else return TRUE;
+
+    }//DeleteFile
+
+/**
+* Read the contents of a directory
+*/
+	function ReadDir($Dir = NULL)
+	{
+		if (is_dir($Dir)) {
+			$Contents = scandir($Dir);
+			foreach ($Contents as $ID => $Name) {
+				if (($Name == '.') or ($Name == '..')) unset($Contents[$ID]);
+			}//foreach
+		}//if
+
+		return $Contents;
+
+	}//ReadDir
+
+/**
+* Reads contents from a file not registered in the database
+*/
+	function DirectRead($Filename)
+	{
+		// Get contents and return
+
+		if ($FileContent = @file_get_contents($Filename)) return $FileContent;
+		else return FALSE;
+
+	}//DirectRead
+
+/**
+* Write to a file not registered in the database
+*/
+	function DirectWrite($Filename, $Content)
+	{
+		// Check file permissions
+
+		$this->CheckPermissions($Filename, $this->WritePermissions);
+
+		// Write contents and return
+
+		if ($FileSize = file_put_contents($Filename, $Content)) return TRUE;
+		else return FALSE;
+
+	}//DirectWrite
+
+/**
+* Stream a file to the browser by providing a path to the file
+*/
+	function StreamFile($Filename, $Disposition = 'attachment')
+	{
+		if (file_exists($Filename)) {
+
+			// Get details
+
+			$MIMEType = $this->GetMIMEType($Filename);
+
+			$Tmp = explode("\\", $Filename);
+			$File = count($Tmp) - 1;
+
+			if ($File == 0) {
+				$Tmp = explode("/", $Filename);
+				$File = count($Tmp) - 1;
+			}//if
+
+			$SaveAs = $Tmp[$File];
+			//$ContentType = $this->GetMediaType($Filename);
+			$ContentLength = filesize($Filename);
+
+			// Set headers
+
+			Header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+			Header("Content-Disposition: ".$Disposition."; filename=".$SaveAs.";");
+			Header("Content-Type: ".$MIMEType);
+			Header("Content-Length: ".$ContentLength);
+
+			// Send file to browser
+
+			$fh = fopen(($Filename), 'r');
+			while(!feof($fh)) { echo fread($fh, 1024); }//while
+			fclose($fh);
+
+		}//if
+
+	}//StreamFile
+
+/**
+* Set file permissions
+*/
+	function CheckPermissions($File, $Permissions = NULL)
+	{
+		// Set UMask to 0 (zero)
+
+		$UMask = umask();
+		umask(0);
+
+		// If no permissions were specified, use default setting
+
+		if ($Permissions === NULL) { $Permissions = $this->WritePermissions; }//if
+
+		// Look for required data, if found, set permissions
+
+		if (@file_exists($File) && ($Permissions !== NULL)) {
+
+			if (@chmod($File, $Permissions)) {
+
+				umask($UMask);
+				return TRUE;
+
+			}//if
+
+		}//if
+
+		umask($UMask);
+		return FALSE;
+
+	}//CheckPermissions
+
+/**
+* Format a file name to prevent invalid characters in the file name
+*/
+	function FormatFileName($FileName)
+	{
+		// Make sure FileName is not empty
+
+		if (!empty($FileName)) {
+
+			$ReplaceChars = Array(' ','`','~','!','@','#','$','%','^','&','*','+','=','(','{','[',':',';','"',"'",'<','>',',','/','\\','|','?', '-', '___', '__');
+			$StripChars = Array(')','}',']');
+
+			// Check if the file is a path, or
+			// a file returned from $this->GetUploadedFile()
+
+			if (is_string($FileName)) {
+				$Path = explode('/', $FileName);
+				if (!empty($Path)) {
+					$FNi = count($Path) - 1;
+					$FileName = $Path[$FNi];
+				}//if
+			}//if
+			else if (is_array($FileName)) $FileName = $FileName['name'];
+
+			// Remove unwanted characters
+
+			foreach ($ReplaceChars as $Char) { $FileName = str_replace($Char, '_', $FileName); }//foreach
+			foreach ($StripChars as $Char) { $FileName = str_replace($Char, '', $FileName); }//foreach
+
+		}//if
+
+		// Return file name
+
+		return $FileName;
+
+	}//FormatFileName
+
+/**
+* Load the list of MIME types
+*/
+	function LoadMIMETypes()
+	{
+		global $paths;
+
+		$Types = Array();
+		$TypesFile = $paths->get( 'files', 'mime.types' );
+		$TypesContent = $this->DirectRead($TypesFile);
+
+		$Lines = explode("\n", $TypesContent);
+
+		foreach ($Lines as $Line) {
+
+			$Type = Explode("	", $Line);
+			$Type[0] = trim($Type[0]);
+			$Type[1] = trim($Type[1]);
+			$Types[$Type[0]] = $Type[1];
+
+		}//foreach
+
+		$this->MIMETypes = $Types;
+
+	}//LoadMIMETypes
+
+/**
+* Return 'human-readable' file size
+*/
+    function fsize($file) {
+
+        $a = array("B", "KB", "MB", "GB", "TB", "PB");
+        $pos = 0;
+        $size = filesize($file);
+
+        while ($size >= 1024) {
+               $size /= 1024;
+               $pos++;
+        }//while
+
+        return round($size,0)." ".$a[$pos];
+
+    }//fsize
+
+/**
+* Create a backup of all files on the system
+*/
+	function Backup()
+	{
+		global $Paths;
+
+		// Max execution time 5 mins (600 secs)
+
+		set_time_limit(600);
+
+		// Get the directory we are backing up and set the archive file name
+
+		$BackupFolder = $Paths->GetPath('Root'); // = dirname($_SERVER["SCRIPT_FILENAME"]);
+		$Filename = $BackupFolder.'/backup/backup-'.date('Ymd-Hi', mktime()).'.tar.gz';
+		$Output = Array();
+		$Result = NULL;
+
+		// Change to the root directory.
+		// Should be unnecessary, as this function [Backup()] will be
+		// called by index.php in the public_html directory.
+		// The path returned from $Paths->GetPath('Root')
+
+		chdir($BackupFolder);
+
+		echo '<br />Current working directory:';
+		echo getcwd().'<br />';
+
+		// Create a gzipped tar archive. Exclude the backup directory.
+
+		$Cmd = escapeshellcmd("tar --create --gzip --exclude='backup' --file='".$Filename."' .");
+		exec($Cmd, $Output, $Result);
+
+		// Dump the output and return status of the command.
+		// Unless I add the --verbose option, no output is returned and
+		// a status of zero (0) is returned.
+		// As I understand it, if an error was outputted by the tar command,
+		// we should see it here?
+
+		var_dump($Output, $Result);
+		echo '<br /><br />';
+
+		// Return the filename
+
+		return $Filename;
+
+	}//Backup
+
+}//FileSystem
+
+?>

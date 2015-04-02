@@ -1,0 +1,109 @@
+{function name=getentityname}
+    {if isset($parents)}
+        {foreach from=$parents key=id item=parententity}
+            {if $getid==$parententity.id}
+                <h3>Parent: {$parententity.name}</h3>
+            {/if}
+        {/foreach}
+    {/if}
+    {if isset($entities.children)}
+        {foreach from=$entities.children.entities key=id item=childentity}
+            {if $getid==$childentity.id}
+                <h3>Child: {$childentity.name}</h3>
+            {/if}
+        {/foreach}
+    {/if}
+{/function}
+{function name=showentities}
+	<div class="center">
+	{foreach from=$entities.entities key=id item=entity}
+        <img src="themes/default/images/icons/go-down-9.png" onclick="javascript:$('#entity_{$id}').toggleClass('hidden');$('#entity_{$id}').toggleClass('inlineblock');" />
+    {/foreach}
+    <br />
+    {foreach from=$entities.entities key=id item=entity}
+		<div class="padding_20 black_15 entity hidden" id="entity_{$id}">
+			<h1>{$entity.name}</h1>
+			<div class="relationship" id="entity_relationships_{$id}">
+			{$entity.description}
+			{if isset($entities.relationships)}
+			<h2>Relationships:</h2>
+			{foreach from=$entities.relationships item=relationship}
+                {if $relationship.id1==$entity.id || $relationship.id2==$entity.id}
+                    <br /><br />
+                    {if $relationship.id1==$entity.id}
+                        {if isset($entities.children)}
+                            {getentityname getid=$relationship.id2 entities=$entities parents=$parents}
+                        {/if}
+                    {/if}
+                    {if $relationship.id2==$entity.id}
+                        {if isset($entities.children)}
+                            {getentityname getid=$relationship.id1 entities=$entities parents=$parents}
+                        {/if}
+                    {/if}
+                    <strong>{$relationship.name}</strong><br /><small>{$relationship.description}</small>
+                {/if}
+			{/foreach}
+			{/if}
+			</div>
+		</div>
+	{/foreach}
+	{if isset($entities.children)}
+		{showentities entities=$entities.children parents=$entities.entities}
+	{/if}
+    </div>
+{/function}
+{showentities entities=$entities parents=$entities.entities}
+<style>
+	.entity{ width:400px; }
+	.relationship{ width:100%; }
+</style>
+<script type="text/javascript">
+// Show entity info
+function show(id)
+{
+	$('#entity_'+id).toggle();
+}
+
+function position()
+{
+	width = $(document).width();
+	height = $(document).height();
+	
+	$('.entity').offset({
+		left:((width/2) - ($('.relationship').width()/2)),
+		top:((height/2) - ($('.relationship').height()/2))
+	});
+	
+	{foreach from=$entities.entity key=id item=entity}
+	$('#entity_'+{$id}).offset({
+		left:((width/2) - ($('#entity_'+{$id}).width()/2)),
+		top:((height/2) - ($('#entity_'+{$id}).height()/2))
+	});
+	{/foreach}
+	
+	arrange();
+}
+
+function arrange()
+{
+	var radius = 200; // radius of the circle
+	var fields = $('.entity'),
+		container = $(document),
+		width = container.width(),
+		height = container.height(),
+		angle = 0,
+		step = (2*Math.PI) / fields.length;
+		
+	fields.each(function() {
+		var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).width()/2),
+			y = Math.round(height/2 + radius * Math.sin(angle) - $(this).height()/2);
+		$(this).css({
+			left: x + 'px',
+			top: y + 'px'
+		});
+		angle += step;
+	});
+}
+
+position();
+</script>

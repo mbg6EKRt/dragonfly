@@ -1,0 +1,59 @@
+<h2>Set the access level:</h2>
+<label>
+	<span>Access Level:</span>
+	<span><select name="access" id="access" onchange="_lib_user_select_access();">
+		{foreach $accesslevels as $value => $label}<option value="{$value}"{if $value==$access} selected="selected"{/if}>{$label}</option>{/foreach}
+		</select></span>
+</label>
+
+<div id="_lib_user_rights_permissions" class="hidden">
+<br />
+<h2>Select which groups have access:</h2><br />
+{foreach $usergroups as $key => $group}<label class="inlineblock _50 h_30px"><input type="checkbox" name="group_id[]" value="{$group.id}"{if $group.selected == 1} checked="checked"{/if} />&nbsp;{$group.name}</label>{/foreach}
+</div>
+
+{if $per_site_permissions_enabled == true}
+<div id="_lib_user_site_permissions" class="hidden">
+<br />
+<h2>Select which groups have access for each site:</h2><br />
+{foreach $sites as $sitekey => $site}
+	<h3>{$site.name}</h3>
+	{foreach $usergroups as $key => $group}<label class="inlineblock _50 h_30px"><input type="checkbox" name="site_{$site.id}_group_{$group.id}" value="Y"{if $group.selected == 1} checked="checked"{/if} />&nbsp;{$group.name}</label>{/foreach}
+{/foreach}
+</div>
+{/if}
+
+<script type="text/javascript">
+
+// Handle a change in the access select element
+
+function _lib_user_select_access()
+{
+	var access = $( '#access' ).val();
+	
+	switch( access )
+	{
+		case "rights":
+			$( "#_lib_user_site_permissions" ).hide( );
+			$( "#_lib_user_rights_permissions" ).show( );
+		break;
+		
+		{if $per_site_permissions_enabled == TRUE}
+		case "site":
+			$( "#_lib_user_rights_permissions" ).hide( );
+			$( "#_lib_user_site_permissions" ).show( );
+		break;
+		{/if}
+		
+		default:
+			$( "#_lib_user_rights_permissions" ).hide( );
+			$( "#_lib_user_site_permissions" ).hide( );
+		break;
+	}
+}
+
+// Set initial visibility
+
+_lib_user_select_access();
+
+</script>

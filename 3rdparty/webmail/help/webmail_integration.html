@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<!--meta HTTP-EQUIV="Content-Type" Content="text-html; charset=iso8859-1"-->
+		<link rel="stylesheet" href="help_styles.css" type="text/css">
+	</head>
+	<body>
+		<br>
+		<p class="wmh_header" align="center">How to integrate WebMail into another system</p>
+		<p class="wmh_reg">
+			WebMail can be easily integrated into any existing system.<br>
+			<br>
+			To bypass WebMail's login screen and enter user's email account directly, it is 
+			required to set up some data that identify user in WebMail system. WebMail 
+			provides CIntegration object for this purpose.<br>
+			<br>
+		<p class="wmh_reg">
+			<b>Usage</b> of CIntegration object is simple. <blockquote> 1.&nbsp;&nbsp;Include integr.php file<br>
+				<br>
+				<span class="wmh_codeSample">include('integr.php');</span>
+				<br>
+				<br>
+				2.&nbsp;&nbsp;Create "CIntegration" object:<br>
+				<br>
+				<span class="wmh_codeSample">$Integr = new CIntegration($webmailrootpath = null);</span>
+				<br>
+				$webmailrootpath - path to the WebMail root folder necessary for correct UserLogin method work.
+				<br>
+				<br>
+				3.&nbsp;&nbsp;Now, for instance, we need to log a user into WebMail bypassing standard login screen.
+				Let's call UserLogin method for this purpose:<br>
+				<br>
+				<span class="wmh_codeSample">$Integr-&gt;UserLogin($email, $login, $password, $incHost, $outHost, $startPage, $incPort, $outPort, $useAuth, $toEmail);</span>
+				<br>
+				$incPort, $outPort, $useAuth, $toEmail - optional parameter.
+				<br>
+				<a href="#consts">$startPage</a> - a constant determining the screen the user will be redirected to
+				after logging in.
+				<br>
+				<br>
+				See also <a href="#usageexample">Usage Example</a> for details on user's 
+				account upates in WebMail system.<br>
+				<br>
+			</blockquote>
+		<p class="wmh_reg">
+			<a name="methods" class="wmh_txt"><b>Methods:</b></a><br>
+			<br>
+			<table style="MARGIN-LEFT:30px; VERTICAL-ALIGN:top; BORDER-COLLAPSE:collapse" cellpadding="4"
+				cellspacing="0" class="wmh_reg" border="0">
+				<tr>
+					<td class="wmh_desc_content" width="250"><i>UserLogin($email, $login, $password, $incHost, $outHost, $startPage, $incPort, $outPort,
+						$useAuth, $toEmail)</i></td>
+					<td class="wmh_desc_content">Performs login and redirects user into WebMail system.
+						<br>
+						<br>
+						$email, $login, $password, $incHost, $outHost - required parameters.
+						<br>
+						$incPort, $outPort, $useAuth, $toEmail - optional parameter
+						<br>
+						$startPage - a constant determining the screen the user will be redirected to after logging in.
+						<br>
+						$toEmail - if you specify $startPage = START_PAGE_IS_NEW_MESSAGE to log into "compose message" screen
+						directly, To field will be filled with this value.
+						<br>
+					</td>
+				</tr>
+				<tr>
+					<td class="wmh_desc_content" width="250"><i>GetErrorString()</i></td>
+					<td class="wmh_desc_content">
+					    Gets the last error description.
+					</td>
+				</tr>
+			</table>
+			<br>
+		<p class="wmh_reg">
+			<a name="consts" class="wmh_txt"><b>$startPage constants (determine the screen the user will be redirected to after logging in)</b></a><br>
+			<br>
+			<table style="MARGIN-LEFT:30px; VERTICAL-ALIGN:top; BORDER-COLLAPSE:collapse" cellpadding="4"
+				cellspacing="0" class="wmh_reg" border="0" ID="Table1">
+				<tr>
+					<td class="wmh_desc_header">Value</td>
+					<td class="wmh_desc_header">Description</td>
+				</tr>
+				<tr>
+					<td class="wmh_desc_content" width="250" height="25"><i>START_PAGE_IS_MAILBOX</i></td>
+					<td class="wmh_desc_content" height="25">Message list screen.</td>
+				</tr>
+				<tr>
+					<td class="wmh_desc_content"><i>START_PAGE_IS_NEW_MESSAGE</i></td>
+					<td class="wmh_desc_content">Compose message screen.</td>
+				</tr>
+			</table>
+			<br>
+		<p class="wmh_reg">
+			<a name="usageexample" class="wmh_txt"><b>Usage example:</b></a><br>
+			<br>
+			<blockquote style="MARGIN-TOP:6px"> On the PHP page you want to launch 
+				WebMail from, add the lines similar to the following:<br>
+				<br>
+				<span class="wmh_codeSample">
+			&lt;?php<br>
+			include('integr.php');<br><br>
+	$Integr = new CIntegration();<br><br>
+
+	$email = 'login@domain.com';<br>
+	$login = 'login';<br>
+	$pass = 'password';<br>
+	$pop3server = 'pop3.domain.com';<br>
+	$smtpserver = 'smtp.domain.com';<br>
+	<br>
+	
+	if (!$Integr-&gt;UserLogin($email, $login, $pass, $pop3server, $smtpserver))<br>
+	{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;echo $Integr->GetErrorString();<br>
+	}<br>
+			?&gt;
+		</span>
+				<br>
+				The code above will redirect to WebMail system and immediately open 
+				"login@domain.com" mailbox.<br>
+				<br>
+			<hr>
+		<p class="wmh_reg" align="center">
+			If you have any questions don't hesitate to email to <a href="mailto:support@afterlogic.com">
+				support@afterlogic.com</a><br>
+			Or visit our support web page at <a href="http://www.afterlogic.com/support" target="_blank">
+				http://www.afterlogic.com/support</a><br>
+			or web forum at <a href="http://www.afterlogic.com/forum" target="_blank">http://www.afterlogic.com/forum</a>
+		</p>
+	</body>
+</html>

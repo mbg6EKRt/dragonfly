@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+
+	<title>{$meta.title}</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="PRAGMA" content="{$meta.cache}" />
+
+	<meta name="title" content="{$meta.title}" />
+	<meta name="author" content="{$meta.author}" />
+	<meta name="copyright" content="{$meta.copyright}" />
+	<meta name="description" content="{$meta.description}" />
+	<meta name="keywords" content="{$meta.keywords}" />
+	<meta name="robots" content="{$meta.indexed},{$meta.follow}" />
+
+	<link rel="stylesheet" type="text/css" href="{$defaultTemplate}/css/default.css" />
+	<link rel="stylesheet" type="text/css" href="{$templateurl}/css/main.css" />
+
+	<script src="{$scripts.jquery}"></script>
+
+</head>
+
+<body>
+
+	<!--
+	<div class="main shadow" id="#parent">
+	
+		<table cellpadding="0" cellspacing="0" width="100%">
+		
+			<tr>
+
+				<td class="_33"><h3>embed:page/hello-world</h3>{ embed:page/hello-world}</td>
+				<td class="_33"><h3>Output from the request in the url:</h3>{ $output}</td>
+				<td class="_33"><h3>task:page/about-us</h3>{ task:page/about-us}</td>
+				
+			</tr>
+			
+		</table>
+
+	</div>
+	-->
+	
+	{$output}
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+{if $show_search!='no'}
+<div class="padding_5 black_15">
+	Search: <input type="text" name="list_search" id="list_search" onkeyup="javascript:ajax_search();" />
+</div>
+
+<div id="list">
+{/if}
+{$list}
+<div class="padding_5 black_15">
+	Showing {$startnum} - {$endnum} of {$count}. Page <input type="text" name="list_page" id="list_page" value="{$pagenum}" class="center _30px" onkeypress="javascript:return set_page(event);" /> of {$totalpagesnum}
+</div>
+{if $show_search!='no'}
+</div>
+{/if}
+{if $show_search!='no'}
+<script type="text/javascript"><!--
+
+// Set the page number
+function set_page(e) 
+{
+	// We can specify the page number
+	if (typeof e == 'number')
+	{
+		var loadURL = '{$adminlist}/&search='+$('#list_search').val()+'&page='+e;
+	}
+	// Or, handle the 'enter' keypress event on the list_page element
+	else
+	{
+		if (e.keyCode == 13) 
+		{
+			var loadURL = '{$adminlist}/&search='+$('#list_search').val()+'&page='+$('#list_page').val();
+		}
+	}
+
+	$.ajax({
+		url: loadURL,
+		context: document.body,
+		success: function(response, status, xhr)
+		{
+			if (status == 'success')
+			{
+				$('#list').html( response );
+			}
+		}
+	});
+
+	return false;
+}
+
+function ajax_search()
+{
+	var loadURL = '{$adminlist}/&search='+$('#list_search').val();
+	
+	$.ajax({
+		url: loadURL,
+		context: document.body,
+		success: function(response, status, xhr)
+		{
+			if (status == 'success')
+			{
+				$('#list').html( response );
+			}
+		}
+	});
+}
+
+function delete_site(url)
+{
+	var delete_site = confirm('Are you sure?');
+
+	if (delete_site == true)
+	{
+		$.ajax({
+			url: url,
+			context: document.body,
+			success: function(response, status, xhr)
+			{
+				if (response == 'success')
+				{
+					loadFrame('{$adminlist}', true);
+				}
+			}
+		});
+	}
+}
+
+//--></script>
+{/if}

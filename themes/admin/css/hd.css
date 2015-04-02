@@ -1,0 +1,36 @@
+/* Over-ride isotope styles */
+
+.isotope-item {
+	z-index: 2;
+	width: 160px;
+	height: 160px;
+	margin: 7px;
+	padding: 15px 0 10px 0;
+	text-align: center;
+	font: bold 18px Arial;
+}
+
+.isotope-item img {
+	max-width: 115px;
+	max-height: 115px;
+}
+
+.frame {
+	width: 860px;
+	height: 800px;
+  	padding: 0;
+	font: 12px Arial;
+	text-align: left;
+	overflow: auto;
+	background: transparent;
+}
+
+.blank {
+	width: 860px;
+	height: 800px;
+  	padding: 0;
+	font: 12px Arial;
+	text-align: left;
+	overflow: auto;
+	background: transparent;
+}

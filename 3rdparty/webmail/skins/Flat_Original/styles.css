@@ -1,0 +1,1535 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	background: White;
+}
+
+.wm_body
+{
+	background: White;
+}
+
+.wm_space_before
+{
+	padding-top: 10px;
+}
+
+label
+{
+	cursor: pointer;
+	cursor: hand;
+	vertical-align: middle;
+	margin-left: 4px;
+}
+
+img
+{
+	border: 0;
+}
+
+td
+{
+	padding: 0;
+	margin: 0;
+}
+
+table
+{
+	padding: 0;
+	margin: 0;
+	border-collapse: collapse;
+	border: 0;
+}
+
+form
+{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+.wm_for_ie_select
+{
+	z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.wm_logo
+{
+	height: 0;
+	border: 0;
+	overflow:hidden;
+}
+
+.wm_print
+{
+	border-collapse: collapse;
+	width: 96%;
+}
+
+.wm_print_content
+{
+	padding: 4px;
+	border: solid #666666;
+	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+.wm_content
+{
+	background: none;
+}
+
+.wm_checkbox
+{
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+}
+
+a.wm_reg, .wm_input, .wm_input_focus, .wm_file, .wm_button
+{
+	font: normal 13px Tahoma, Arial, Helvetica, sans-serif;
+	color: Black;
+}
+
+.wm_button
+{
+	height: 23px;
+	padding: 0 4px 0 4px;
+	cursor: pointer;
+	cursor: hand;
+	font-weight: bold;
+}
+
+.wm_input, .wm_input_focus
+{
+	text-indent: 1px;
+	border: solid 1px #5B86A8;
+}
+
+.wm_file
+{
+	height: 23px;
+	width: auto;
+}
+
+.wm_control_img, .wm_control
+{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.wm_background
+{
+	background: #DBEAF5;
+	width: 100%
+}
+
+a.wm_reg
+{
+	padding: 0 4px 0 0;
+	text-decoration: underline;
+}
+
+a.wm_reg:hover
+{
+	text-decoration: none;
+}
+
+.wm_hide
+{
+	display: none;
+}
+
+.wm_unvisible
+{
+	visibility: hidden;
+}
+
+/*tips*/
+.wm_tip
+{
+	position: absolute;
+	color: Black;
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.wm_tip_arrow
+{
+	background: url(tip_arrow.gif) no-repeat center;
+	width: 11px;
+	height: 50px;
+}
+
+.wm_tip_info
+{
+	background: #FFFFB5 url(tip_info.gif) no-repeat top left;
+	height: 28px;
+	padding: 10px 10px 10px 25px;
+	border: solid #B5AD94;
+	border-width: 1px 1px 1px 0;
+}
+/*--tips*/
+
+/*connection screen*/
+.wm_connection_info
+{
+	background: #e9eff9;
+	border: 0;
+	margin: 70px 10px 80px 10px;
+}
+
+.wm_connection_header
+{
+	padding: 2px;
+	height: 14px;
+	border: solid #7c99c8;
+	border-width: 1px 0 1px 0;
+	background: #7c99c8;
+	color: White;
+	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
+	text-align: center;
+}
+
+.wm_connection_icon
+{
+	width: 40px;
+	background: #e9eff9 url(wait.gif) no-repeat center;
+}
+
+.wm_connection_empty
+{
+	width: 40px;
+}
+
+.wm_connection_message
+{
+	padding: 10px;
+	font: normal 16px Helvetica, Arial, Tahoma, sans-serif;
+	text-align: center;
+}
+
+.wm_connection_progressbar
+{
+	height: 25px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+/*--connection screen*/
+
+/*information*/
+.wm_information, .wm_connection_information, .wm_error_information
+{
+	background: #f4f5f6;
+	border: solid 1px #d1ddf2;
+	z-index: 3;
+}
+
+.wm_information, .wm_error_information, .wm_report_information
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.wm_error_information
+{
+	background: #FFFFB5;
+	border: 1px solid #B5AD94;
+}
+
+.wm_report_information
+{
+	background: #d9edd1;
+	border: 1px solid #98ca85;
+}
+
+.wm_info_message
+{
+	padding: 6px !important;
+	font: normal 12px Tahoma;
+	color: Black;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.wm_connection_information .wm_info_message
+{
+	padding: 6px 10px;
+	text-align: center;
+}
+
+.wm_connection_information .wm_progressbar
+{
+	margin-bottom: 6px;
+}
+
+.wm_info_image
+{
+	padding: 4px 2px 4px 4px;
+	vertical-align: top;
+}
+
+.wm_info_image img
+{
+	width: 20px;
+	height: 26px;
+}
+
+.wm_info_progressbar
+{
+	padding-bottom: 4px;
+	height: 15px;
+	text-align: center;
+}
+/*--information*/
+
+/*login dialog*/
+.wm_login
+{
+	margin: 20px 0 20px 0;
+	background: #e9eff9;
+	border: solid 2px #d1ddf2;
+	color: Black;
+	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
+	width: 303px;
+	table-layout: auto;
+}
+
+#inc_server, #out_server 
+{
+	width: 140px;
+}
+
+#inc_port, #out_port 
+{
+	width: 30px;
+}
+
+#inc_protocol {
+	width: 65px;
+}
+
+.wm_fixed
+{
+	table-layout: fixed;
+}
+
+.wm_login td
+{
+	padding: 4px 4px 4px 2px;
+	text-align: left;
+}
+
+.wm_title
+{
+	text-align: right !important;
+}
+
+.wm_login_header
+{
+	border: solid #7c99c8;
+	border-width: 1px 0 1px 0;
+	background: #7c99c8;
+	color: White;
+	text-align: center !important;
+	padding: 6px;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.wm_login .wm_input, .wm_login .wm_input_focus, .wm_advanced_input, .wm_advanced_input_focus
+{
+	color: Black;
+	border: solid 1px White;
+	background: White;
+}
+
+.wm_login .wm_input, .wm_login .wm_input_focus
+{
+	font: normal 12px Arial;
+	width: 220px;
+}
+
+.wm_password_input
+{
+	letter-spacing: 1px;
+}
+
+.wm_advanced_input_focus, .wm_login .wm_input_focus
+{
+	background: #FFF9B2;
+}
+
+.wm_login .wm_input, .wm_login .wm_input_focus
+{
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.wm_advanced_input, .wm_advanced_input_focus
+{
+	font-size: 13px;
+}
+
+.wm_login_switcher
+{
+	padding-top: 4px;
+	display: block;
+	float: left;
+}
+
+.wm_login_button
+{
+	display: block;
+	float: right;
+}
+
+.wm_login_error
+{
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+	width: 270px;
+	background: #FBF4DD url(login_error.gif) no-repeat top left;
+	padding: 10px 10px 10px 30px;
+	border: 1px solid #FAE5A2;
+	text-align: left;
+}
+/*--login dialog*/
+
+/*accounts panel*/
+.wm_accountslist
+{
+	width: 100%;
+	height: 24px;
+	padding: 0;
+	margin: 0;
+	background: #7c99c8;
+	border: solid 1px #7c99c8;
+	font: 11px Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.wm_accountslist_email
+{
+	display: block;
+	float: left;
+	font-weight: bold;
+	border: 0;
+	border-right: solid 1px #80a1d6;
+	background: none;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 4px 8px;
+	height: 15px;
+}
+
+.wm_accountslist_logout
+{
+	display: block;
+	float: right;
+	margin-top: 0;
+	padding: 4px 8px;
+	height: 15px;
+	font-weight: normal;
+	border: 0;
+	border-left: solid 1px #80a1d6;
+	background: none;
+}
+
+.wm_accountslist a
+{
+	color: White;
+	text-decoration: none;
+}
+
+.wm_accountslist a:hover
+{
+	color: White;
+	text-decoration: underline;
+}
+/*--accounts panel*/
+
+/*toolbar panel*/
+.wm_toolbar
+{
+	width: 100%;
+	height: 26px;
+	background: White;
+	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
+	color: #212121;
+	vertical-align: middle;
+	border: White solid 1px;
+}
+
+.wm_toolbar div
+{
+	margin: 1px;
+	cursor: pointer;
+	cursor: hand;
+	vertical-align: middle;
+}
+
+.wm_toolbar_item, .wm_toolbar_item_inactive
+{
+	float: left;
+	padding: 4px;
+	height: 16px;
+}
+
+.wm_toolbar_item_inactive
+{
+	cursor: default !important;
+}
+
+.wm_toolbar_item_over
+{
+	float: left;
+	padding: 3px;
+	height: 16px;
+	background: #e9eff9;
+	border: solid 1px #d1ddf2;
+}
+
+.wm_toolbar_item_press
+{
+	float: left;
+	padding: 3px;
+	height: 16px;
+	margin: 0;
+	background: #7c99c8;
+	color: White;
+	border: solid 1px #7c99c8;
+}
+
+.wm_tb
+{
+	float: left;
+	padding: 0 !important;
+}
+
+.wm_tb_press
+{
+	float: left;
+	padding: 0 !important;
+	margin: 0;
+	background: #7c99c8;
+	color: White;
+}
+
+.wm_tb div, .wm_tb_press div
+{
+	margin: 0 !important;
+}	
+
+.wm_toolbar_separate
+{
+	float: left;
+	width: 1px;
+	height: 1px;
+}
+
+.wm_popup_menu
+{
+	background: White;
+	color: Black;
+	border: 1px solid #7c99c8;
+	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
+	position: absolute;
+	cursor: hand;
+	cursor: pointer;
+	text-align: left;
+	z-index: 3;
+	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.wm_menu_separate
+{
+	z-index: 3;
+	padding-top: 1px;
+	background: #C1CDD8;
+	border-style: solid;
+	border-color: #4791C5;
+	border-width: 0 1px 0 1px;
+}
+
+.wm_toolbar img
+{
+	vertical-align: middle;
+}
+
+.wm_menu_reply_img ,
+.wm_menu_replyall_img ,
+.wm_menu_forward_img ,
+.wm_menu_delete_img ,
+.wm_menu_send_message_img ,
+.wm_menu_new_message_img ,
+.wm_menu_check_mail_img
+{
+	display: none;
+}
+
+.wm_menu_next_prev_img
+{
+	width: 15px;
+	height: 14px;
+	margin-right: 2px;
+}
+
+.wm_menu_save_message_img ,
+.wm_menu_print_message_img
+{
+	display: none;
+}
+
+.wm_menu_priority_img
+{
+	width: 11px;
+	height: 14px;
+	margin-right: 2px;
+}
+
+.wm_menu_control_img ,
+.wm_menu_move_control_img
+{
+	width: 9px;
+	height: 14px;
+}
+
+.wm_menu_move_control_img
+{
+	margin-left: 4px;
+}
+
+.wm_menu_item, .wm_menu_item_over, .wm_menu_item_spec, .wm_menu_item_over_spec
+{
+	padding: 2px 2px 2px 3px;
+	z-index: 3;
+	background: none;
+}
+
+.wm_menu_item_spec
+{
+	background: #DEECF5;
+ 	border-top: solid 1px #C8DEEE;
+}
+
+.wm_menu_item_over, .wm_menu_item_over_spec
+{
+	background: #d1ddf2;
+}
+
+.wm_menu_item_over_spec
+{
+	border-top: solid 1px #C8DEEE;
+}
+/*--toolbar panel*/
+
+/*page switcher*/
+.wm_inbox_page_switcher
+{
+	position: absolute;
+	top: 118px;
+	right: 16px;
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+	z-index: 2;
+}
+
+.wm_inbox_page_switcher_left
+{
+	background: url(page_switchers/inbox_left_border.gif) no-repeat;
+	width: 9px;
+	height: 18px;
+}
+
+.wm_inbox_page_switcher_right
+{
+	background: url(page_switchers/inbox_right_border.gif) no-repeat;
+	width: 9px;
+	height: 18px;
+}
+
+.wm_inbox_page_switcher_pages
+{
+	background: #FFFDF9;
+	color: #14649C;
+	border-top: solid 1px #B4D4EC;
+}
+
+.wm_inbox_page_switcher_pages a
+{
+	padding: 0 2px 0 2px;
+	text-decoration: none;
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+	color: #14649C;
+}
+
+.wm_inbox_page_switcher_pages font
+{
+	background: #f8ecdf;
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+	padding: 0 4px 0 4px;
+}
+
+.wm_page_switcher_prev_next
+{
+	width: 5px;
+	height: 9px;
+}
+
+.wm_page_switcher_first_last
+{
+	width: 8px;
+	height: 9px;
+}
+/*--page switcher*/
+
+/*mail container*/
+.wm_mail_container
+{
+	background: White;
+	border: 0;
+	font: normal 11px Tahoma;
+}
+
+.wm_mail_container td
+{
+	vertical-align: top;
+	text-align: left;
+}
+
+.wm_vresizer_part
+{
+	text-align: left;
+}
+
+.wm_vresizer_width
+{
+	height: 1px;
+	width: 4px;
+	overflow: hidden;
+}
+
+.wm_vresizer, .wm_vresizer_press
+{
+	z-index: 2;
+	position: relative;
+	top: 0;
+	left: 1px;
+	overflow: hidden;
+}
+
+.wm_vresizer
+{
+	background: none;
+}
+
+.wm_vresizer_mess
+{
+	background: #d1ddf2;
+}
+
+.wm_vresizer_press
+{
+	background: #979899;
+}
+
+.wm_hresizer_height
+{
+	width: 0;
+	height: 1px;
+	overflow: hidden;
+}
+
+.wm_hresizer, .wm_hresizer_press
+{
+	z-index: 1;
+	position: relative;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+
+.wm_hresizer
+{
+	background: none;
+}
+
+.wm_hresizer_press
+{
+	background: #979899;
+}
+/*--mail container*/
+
+/*inbox part*/
+.wm_inbox
+{
+	border: solid #c2cee4;
+	border-top-color: #d1ddf2;
+	border-width: 1px 0 1px 0;
+}
+
+.wm_inbox a
+{
+	color: #009;
+	text-decoration: none;
+}
+
+.wm_inbox a:hover
+{
+	text-decoration: underline;
+}
+
+.wm_inbox td, .wm_inbox img, .wm_inbox input
+{
+	text-align: center;
+	vertical-align: middle;
+}
+
+.wm_inbox_headers
+{
+	position: relative;
+	top: 0;
+	left: 0;
+	height: 23px;
+	background: #d1ddf2;
+	color: #4b6a9b;
+	border: 0;
+	border-bottom: solid 1px White;
+}
+
+.wm_inbox_headers div
+{
+	position: absolute;
+	top: 0;
+	text-align: center;
+	padding-top: 4px;
+}
+
+.wm_inbox_headers img
+{
+	width: 14px;
+	height: 14px;
+	vertical-align: middle;
+}
+
+.wm_inbox_headers_from_subject
+{
+	text-align: left !important;
+	padding-left: 4px;
+}
+
+.wm_inbox_headers_text
+{
+	padding-left: 4px;
+}
+
+.wm_inbox_headers_separate_noresize
+{
+	width: 1px;
+	height: 20px;
+	padding: 0 !important;
+	background: #d1ddf2;
+	overflow: hidden;
+}
+
+.wm_inbox_headers_separate
+{
+	height: 23px;
+	padding: 0 !important;
+	overflow: hidden;
+}
+
+.wm_inbox_headers_separate div
+{
+	margin-left: 1px;
+	width: 1px;
+	height: 100%;
+	padding: 0 !important;
+	background: #d1ddf2;
+	overflow: hidden;
+}
+
+.wm_inbox_lines
+{
+	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 600px;
+	background: White;
+	text-align: left;
+}
+
+.wm_inbox_info_message
+{
+	font: normal 18px Tahoma;
+	color: #ccc;
+	text-align: center;
+	margin: 30px;
+}
+
+.wm_inbox_lines table
+{
+	table-layout: fixed;
+	width: 554px;
+	padding: 0;
+	margin: 0;
+}
+
+.wm_inbox_lines td
+{
+	font: normal 11px Tahoma;
+	overflow: hidden;
+	white-space: nowrap;
+	padding: 0;
+	margin: 0;
+}
+
+.wm_inbox_lines img
+{
+	width: 14px;
+	height: 14px;
+}
+
+.wm_inbox_lines a
+{
+	color: black;
+}
+
+.wm_inbox_icon
+{
+	width: 15px !important;
+	height: 15px !important;
+}
+
+.wm_inbox_lines font
+{
+	background: #F0D6B9;
+	font-size: 110%
+}
+
+.wm_inbox_item td, .wm_inbox_item_select td
+{
+	height: 20px;
+	border-bottom: solid 1px #C1CDD8 !important;
+	cursor: default;
+}
+
+.wm_inbox_item_select
+{
+	background: #f8ecdf;
+}
+
+.wm_inbox_from_subject
+{
+	text-align: left !important;
+}
+
+.wm_inbox_from_subject nobr
+{
+	padding-left: 4px;
+	padding-right: 4px;
+}
+/*--inbox part*/
+
+/*message part*/
+.wm_message_body_quotation
+{
+	color: Maroon;
+}
+
+.wm_message_container
+{
+	border: 0;
+	border-bottom: solid 1px #c2cee4;
+	border-top: solid 1px #d1ddf2;
+}
+
+.wm_message_headers
+{
+	background: #d1ddf2;
+	font-size: 11px;
+	color: Black;
+}
+
+.wm_message_headers select /* charset selection in preview pane */
+{
+	font: normal 10px Tahoma;
+}
+
+.wm_message_headers div
+{
+	height: 16px;
+}
+
+.wm_message_headers a
+{
+	color: #698abf;
+	text-decoration: underline;
+	font-size: 11px;
+}
+
+.wm_message_headers a:hover
+{
+	color: #698abf;
+	text-decoration: none;
+}
+
+.wm_message_headers font
+{
+	color: #698abf;
+	font-size: 11px;
+	margin-right: 4px;
+}
+
+.wm_message_headers span
+{
+	white-space: nowrap;
+	margin: 0 4px 0 4px;
+}
+
+.wm_message_left
+{
+	display: block;
+	float: left;
+	text-align: left;
+}
+
+.wm_message_right
+{
+	display: block;
+	float: right;
+}
+
+.wm_message_resized
+{
+	overflow: hidden;
+}
+
+.wm_message_attachments
+{
+	margin: 0 2px 0 0;
+	width: 140px;
+	text-align: center;
+	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background: White;
+	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.wm_message_attachments div
+{
+	padding: 4px;
+	width: 95px;
+	height: 60px;
+	overflow: hidden;
+	vertical-align: middle;
+	margin-bottom: 8px;
+}
+
+.wm_message_attachments img
+{
+	vertical-align: middle;
+	cursor: hand;
+	cursor: pointer;
+	width: 32px;
+	height: 32px;
+}
+
+.wm_message_attachments span
+{
+	cursor: hand;
+	cursor: pointer;
+}
+
+.wm_attach_download_a
+{
+	text-decoration: none;
+	color: Black;
+	padding: 0;
+	font-size: 11px;
+}
+
+.wm_attach_view_a
+{
+	color: #436F8D;
+	padding: 0;
+	font-size: 11px;
+}
+
+.wm_message
+{
+	background: White;
+	text-align: left;
+	overflow: auto;
+	padding: 8px;
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.wm_attachments_cell
+{
+	border: 0;
+	padding: 2px 0 2px 5px !important;
+}
+
+.wm_message_cell
+{
+	border: 0;
+	padding: 2px 5px 2px 0 !important;
+}
+/*--message part*/
+
+/*new message*/
+.wm_new_message
+{
+	background: #e9eff9;
+	width: 100%;
+	padding: 0 10px 0 10px;
+	color: Black;
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.wm_new_message td
+{
+	padding: 2px 5px 2px 10px;
+	border: none;
+	text-align: left;
+}
+
+.wm_new_message_title
+{
+	text-align: right !important;
+	width: 90px;
+}
+
+.wm_attachment
+{
+	border-top: solid 1px #c2cee4 !important;
+	color: #003366;
+	vertical-align: middle;
+}
+
+.wm_attachment img
+{
+	vertical-align: middle;
+	width: 32px;
+	height: 32px;
+	margin: 0 10px 0 10px;
+}
+
+.wm_attach
+{
+	border-top: solid 1px #5D77BB !important;
+	padding: 6px 5px 4px 10px !important;
+}
+
+.wm_new_message a
+{
+	color: Black;
+	text-decoration: underline;
+}
+
+.wm_new_message a:hover
+{
+	color: Black;
+	text-decoration: none;
+}
+/*--new message*/
+
+/*view message*/
+.wm_safety_info
+{
+	color: #B5AD94;
+	background: #FFFFB5;
+	border: 1px solid #B5AD94;
+	padding: 8px !important;
+}
+
+.wm_safety_info a
+{
+	color: #7E9BAF;
+}
+
+.wm_view_message, .wm_message_viewer
+{
+	background: #e9eff9;
+	width: 100%;
+	color: Black;
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.wm_view_message td, .wm_message_viewer_cell
+{
+	padding: 2px 5px 2px 10px;
+	text-align: left;
+}
+
+.wm_view_message_title
+{
+	text-align: right !important;
+	vertical-align: top;
+	width: 50px;
+	color: #4b6a9b;
+	white-space: nowrap;
+}
+
+.wm_view_message font
+{
+	color: #4b6a9b;
+}
+
+.wm_view_message_select /* charset selection in full screen view */
+{
+	font: normal 11px Tahoma;
+}
+
+.wm_view_message_switcher
+{
+	vertical-align: bottom !important;
+	text-align: right !important;
+}
+
+.wm_view_message_switcher img
+{
+	margin-right: 6px;
+	cursor: pointer;
+	cursor: hand;
+	width: 13px;
+	height: 13px;
+}
+
+.wm_add_address_book_img
+{
+	vertical-align: text-bottom;
+	cursor: pointer;
+	cursor: hand;
+	width: 16px;
+	height: 14px;
+}
+
+.wm_view_message .wm_add_address_book_img
+{
+	margin-left: 4px;
+}
+
+.wm_headers_switcher
+{
+	text-align: right !important;
+	vertical-align: top;
+	padding-left: 0;
+}
+
+.wm_headers_switcher a
+{
+	color: #7c99c8;
+	font-size: 10px;
+}
+
+.wm_headers_switcher a:hover
+{
+	color: #4b6a9b;
+}
+
+.wm_headers
+{
+	border: 1px solid #c2cee4;
+	background: #d1ddf2;
+	padding: 5px 5px 0 5px;
+	position: absolute;
+	z-index: 1;
+}
+
+.wm_message_rfc822
+{
+	background: #fafafa;
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+	color: #212121;
+	border: solid 1px #c2cee4;
+	padding: 2px 2px 2px 4px;
+	margin: 0;
+	overflow: auto;
+}
+
+.wm_hide_headers
+{
+	text-align: right;
+	padding: 2px;
+}
+
+.wm_hide_headers a
+{
+	font: normal 14px Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.wm_headers a
+{
+	color: #0B447E;
+	padding: 4px;
+	text-decoration: none;
+}
+
+.wm_headers a:hover
+{
+	color: #0B447E;
+	text-decoration: underline;
+}
+
+.wm_importance_img
+{
+	vertical-align: text-bottom !important;
+	width: 11px;
+	height: 14px;
+	margin-right: 4px;
+}
+/*--view message*/
+
+/*lowtoolbar*/
+.wm_lowtoolbar
+{
+	height: 20px;
+	color: #4b6a9b;
+	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
+	background: #d1ddf2;
+}
+
+.wm_lowtoolbar_messages, .wm_lowtoolbar_space_info
+{
+	display: block;
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+	padding-left: 4px;
+}
+
+.wm_lowtoolbar_messages
+{
+	float: left;
+	padding: 4px;
+	line-height:normal;
+}
+
+.wm_lowtoolbar_space_info
+{
+	float: right;
+	padding: 8px;
+}
+
+.wm_lowtoolbar_space_info .wm_progressbar
+{
+	border: solid 1px #80a1d6;
+}
+
+.wm_lowtoolbar_space_info .wm_progressbar_used
+{
+	background: #7c99c8;
+}
+
+.wm_lowtoolbar_plain_html
+{
+	display: block;
+	float: left;
+	padding: 4px 4px 6px 4px;
+	font: normal 13px Tahoma, Arial, Helvetica, sans-serif;
+}
+
+.wm_lowtoolbar_plain_html a
+{
+	color: #4b6a9b;
+	text-decoration: underline;
+}
+/*--lowtoolbar*/
+
+/*progressbar*/
+.wm_progressbar
+{
+	overflow: hidden;
+	width: 100px;
+	height: 3px;
+	padding: 2px;
+	border: solid 1px #d1ddf2;
+	background: White;
+}
+
+.wm_progressbar_used
+{
+	overflow: hidden;
+	display: block;
+	float: left;
+	background: #7c99c8;
+	height: 3px;
+}
+/*--progressbar*/
+
+/*copyright*/
+.wm_copyright, .wm_copyright a, .wm_regular, .wm_regular a
+{
+	color: #4b6a9b;
+	font: normal 11px Tahoma, Arial, Helvetica, sans-serif;
+	border: none;
+}
+
+.wm_regular, .wm_regular a
+{
+	color: White;
+}
+
+.wm_copyright
+{
+	height: 40px;
+	margin-top: 30px;
+	text-align: center;
+}
+/*--copyright*/
+
+/*settings*/
+.wm_settings
+{
+	width: 100%;
+	border: 0;
+}
+
+.wm_settings_nav
+{
+	background: #d1ddf2;
+	font: normal 12px Tahoma;
+	vertical-align: top;
+	padding: 10px 0 10px 10px;
+	width: 10%;
+}
+
+.wm_settings_nav div
+{
+	text-align: left;
+	padding: 6px;
+}
+
+.wm_settings_nav a
+{
+	color: Black;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.wm_settings_nav a:hover
+{
+	color: #4b6a9b;
+	text-decoration: underline;
+}
+
+.wm_selected_settings_item
+{
+	background: #f4f5f6;
+	position: relative;
+	left: 1px;
+	padding: 5px !important;
+}
+
+.wm_settings_cont
+{
+	background: #f4f5f6;
+	font: normal 12px Tahoma, Arial, Helvetica, sans-serif;
+	text-align: left;
+}
+
+.wm_settings_cont a
+{
+	color: #4b6a9b;
+	text-align: left;
+	text-decoration: none;
+}
+
+.wm_settings_cont a:hover
+{
+	color: #4b6a9b;
+	text-decoration: underline;
+}
+
+.wm_settings_cont td
+{
+	padding: 4px;
+}
+/*--settings*/
+
+/*admin styles*/
+.wm_admin_center
+{
+	margin: 10px 30px 10px 30px;
+}
+
+.wm_admin_center_min
+{
+	margin: 10px 10px 10px 10px;
+}
+
+.wm_admin_title
+{
+	padding: 5px 0 5px 10px !important;
+	background-color: #DEDEDE;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+}
+
+.wm_user_table, .wm_user_table td, .wm_user_table th
+{
+	border: solid 1px silver;
+	font-size: 11px;
+}
+
+.wm_user_table tr.even td
+{
+	background-color: #EEEEEE;
+}
+
+.wm_user_table th
+{
+	background-color: #DEDEDE;
+	text-align: center;
+	height: 26px;
+	padding: 0 12px 0 12px;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.messdiv
+{
+	padding: 5px 0 5px 0 !important;
+	border: 1px solid White;
+}
+
+.wm_print_content
+{
+	padding: 4px;
+
+	background: White;
+	border: solid 1px #666666;
+	
+	color: Black;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+.wm_progressbar_used_blue
+{
+	overflow: hidden;
+	display: block;
+	position: absolute;
+	z-index: -15;
+	float: left;
+	background: #999999;
+	height: 3px;
+}
+
+.wm_disabled
+{
+	color: #999;
+	font-weight: bold;
+}
+/*--admin styles*/

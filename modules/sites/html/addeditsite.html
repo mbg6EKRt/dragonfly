@@ -1,0 +1,290 @@
+<h1>{$formTitle}</h1>
+
+<!--
+<form id="addeditsite" class="_100" enctype="multipart/form-data" target="submitframe" method="POST" action="{$formurl}">
+-->
+
+<form id="addeditsite" class="_100" enctype="multipart/form-data" method="POST">
+
+	<div>
+	
+		<div class="tabmenu right">
+		
+			<a onclick="javascript:show('details');" class="clickable _wb50">Details</a>
+			<a onclick="javascript:show('seo');" class="clickable _wb50">SEO</a>
+			<a onclick="javascript:show('modules');" class="clickable _wb50">Modules</a>
+			<a onclick="javascript:show('security');" class="clickable _wb50">Security</a>
+			<!-- a onclick="javascript:show('save');$('#addeditsite').submit();" class="clickable _wb50">Save</a -->
+			<a onclick="javascript:show('save');save();" class="clickable _wb50 submit">Save</a>
+		
+		</div>
+
+		<div id="details" class="tab white_25 shadow">
+		<table class="_100">
+
+			<tr>
+
+				<th class="_50"><h2>Details</h2></th>
+				<th class="_50"><h2>Defaults</h2></th>
+
+			</tr>
+
+			<tr>
+
+				<td class="_50 top">
+					<!--
+					<label>
+
+						<span class="_33">Logo</span>
+						<span><input type="file" name="logo" id="logo" /></span>
+
+					</label>
+					-->
+					<label>
+
+						<span class="_33">Name</span>
+						<span><input type="text" name="name" id="name" value="{$name}" onkeyup="javascript:setURL();" onchange="javascript:setURL();" /></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33">URL</span>
+						<span><input type="text" name="url" id="url" value="{$url}" /></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33">Domain</span>
+						<span><input type="text" name="domain" value="{$domain}" /></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33">Force URL?</span>
+						<span><input type="checkbox" name="forceurl" value="1" /></span>
+
+					</label>
+
+				</td>
+				<td class="_50 top">
+
+					<label>
+
+						<span class="_33">Default Site?</span>
+						<span><input type="checkbox" name="default" value="1"{if $default == 1} checked="checked"{/if} /></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33">Default Task</span>
+						<span><select name="default_task">
+							{foreach $modules module}
+								<option disabled="disabled" value="">{$module.name}</option>
+								{foreach $tasks task}
+									{if $task.module_id == $module.id}
+										<option value="{$task.id}"{if $default_task == $task.id} selected="selected"{/if}>&nbsp;&nbsp;- {$task.name}</option>
+									{/if}
+								{/foreach}
+							{/foreach}
+						</select></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33">Default Layout</span>
+						<span><select name="default_layout">
+							{foreach $themes theme}
+								<option disabled="disabled" value="">{$theme.name}</option>
+								{foreach $layouts layout}
+									{if $layout.theme_id == $theme.id}
+										<option value="{$layout.id}"{if $default_layout == $layout.id} selected="selected"{/if}>&nbsp;&nbsp;- {$layout.name}</option>
+									{/if}
+								{/foreach}
+							{/foreach}
+						</select></span>
+
+					</label>
+
+				</td>
+
+			</tr>
+
+		</table>
+		</div>
+
+		<div id="seo" class="hidden tab white_25 shadow">
+		<h2>Search Engine Optimization</h2>
+		<table class="_100">
+
+			<tr>
+
+				<td class="_50 top">
+
+					<label>
+
+						<span class="_33">Title</span>
+						<span><input type="text" name="title" id="title" value="{$title}" /></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33 top">Description</span>
+						<span><textarea name="description">{$description}</textarea></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33 top">Keywords</span>
+						<span><textarea name="keywords">{$keywords}</textarea></span>
+
+					</label>
+
+				</td>
+				<td class="_50 top">
+
+					<label>
+
+						<span class="_33">Author</span>
+						<span><input type="text" name="author" value="{$author}" /></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33">Copyright</span>
+						<span><input type="text" name="copyright" value="{$copyright}" /></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33 top">Index this site?</span>
+						<span><input type="checkbox" name="indexed" value="1"{if $indexed == 1} checked="checked"{/if} /></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33">Follow links?</span>
+						<span><input type="checkbox" name="follow" value="1"{if $follow == 1} checked="checked"{/if} /></span>
+
+					</label>
+
+					<label>
+
+						<span class="_33">Cache this site?</span>
+						<span><input type="checkbox" name="cache" value="1"{if $cache == 1} checked="checked"{/if} /></span>
+
+					</label>
+
+				</td>
+
+			</tr>
+
+		</table>
+		</div>
+
+		<div id="modules" class="hidden tab white_25 shadow">
+			<h2>Select which modules are enabled on this site:</h2><br />
+			{foreach $modules as $key => $module}<label class="_25 inlineblock"><span><input type="checkbox" name="module_id[]" value="{$module.id}"{if $module.selected == 1} checked="checked"{/if} />&nbsp;{$module.name}</span></label>{/foreach}
+		</div>
+
+		<div id="security" class="hidden tab white_25 shadow">
+			{$permissionsform}
+		</div>
+
+		<div id="save" class="hidden tab white_25 shadow">
+			<div id="saving"><!-- <iframe name="submitframe" id="submitframe" class="_100 noborder" style="height: 400px;"></iframe> --></div>
+		</div>
+
+	</div>
+
+	<input type="hidden" name="meta_id" id="meta_id" value="{$meta_id}" />
+	<input type="hidden" name="id" id="id" value="{$id}" />
+
+</form>
+
+
+
+<script type="text/javascript"><!--
+
+var current_tab = 'details';
+
+function show(el)
+{
+	if (el != current_tab)
+	{
+		// When using the slide functions, jquery cannot compute the height without a width
+		
+		$('#'+current_tab).slideToggle("350");
+		$('#'+el).slideToggle("350");
+		
+		current_tab = el;
+	}
+}
+
+// Set the URL of the site based on the name
+
+function setURL()
+{
+	var name = $('#name').val();
+	var url = name.replace(/[^a-zA-Z 0-9]+/g,'');
+	url = url.replace(/[ ]+/g,'-');
+
+	$('#url').val(url);
+}
+
+// Save the site
+
+function save()
+{
+	var x = new Date();
+	var h = x.getHours();
+	var m = x.getMinutes();
+	var s = x.getSeconds();
+	
+	// add a zero in front of numbers<10
+	
+	m = checkTime(m);
+	s = checkTime(s);
+	
+	x = h+":"+m+":"+s;
+
+	$("#saving").html($("#saving").html()+'<br />'+x+': '+'Saving ...');
+	var saveurl = '{$formurl}';
+	var savedata = $('#addeditsite').serializeArray();
+
+	$.ajax({
+		type: 'POST',
+		url: saveurl,
+		data: savedata,
+		success: function(response, status, xhr){
+			if (status == "success") {
+				$("#saving").html($("#saving").html()+'<br />'+x+': '+response);
+			}
+		}
+	});
+}
+
+function saved(msg)
+{
+	alert(msg);
+}
+
+function checkTime(i)
+{
+	if (i < 10)
+	{
+		i = "0" + i;
+	}
+	return i;
+}
+
+//--></script>

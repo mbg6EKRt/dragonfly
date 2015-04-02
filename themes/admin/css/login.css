@@ -1,0 +1,58 @@
+body {
+	font: 14px sans-serif;
+	background: url('../images/bg.jpg') 50% 0 repeat;
+}
+
+fieldset {
+	display: inline-block;
+	padding: 7px 14px 14px 14px;
+	border: 2px solid #ffffff;
+	border-radius: 10px;
+}
+
+fieldset legend {
+	text-align: left;
+	font: bold 14px sans-serif;
+	padding: 10px;
+	border: 0;
+	border-radius: 10px;
+	background: #FFFFFF;
+	color: #000000;
+}
+
+fieldset label {
+	display: block;
+	text-align: left;
+	padding: 2px;
+	padding-left: 10px;
+	color: #FFFFFF;
+}
+
+fieldset label span {
+	font: bold 14px sans-serif;
+	display: inline-block;
+	width: 150px;
+}
+
+input {
+	font: bold 13px sans-serif;
+	border: 0;
+	border-radius: 5px;
+	padding: 10px;
+	background: #FFFFFF;
+}
+
+input[type="submit"] {
+	height: 36px;
+	width: 60px;
+}
+
+.main {
+	text-align: center;
+	color: #FFFFFF;
+	padding: 30px;
+}
+
+.login {
+	margin-top: 50px;
+}
