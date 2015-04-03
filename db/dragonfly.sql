@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.2.6deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 21, 2014 at 08:42 PM
--- Server version: 5.5.37-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4
+-- Generation Time: Apr 03, 2015 at 08:41 PM
+-- Server version: 5.5.40-0ubuntu1
+-- PHP Version: 5.5.12-2ubuntu4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,13 +27,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `ent` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `content_file_id` int(12) DEFAULT NULL,
   `created` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=206 ;
 
 --
@@ -245,15 +244,14 @@ INSERT INTO `ent` (`id`, `name`, `description`, `content_file_id`, `created`, `m
 --
 
 CREATE TABLE IF NOT EXISTS `ent_rel` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `id1` int(12) DEFAULT NULL,
   `id2` int(12) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `content_file_id` int(12) DEFAULT NULL,
   `created` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
@@ -277,7 +275,7 @@ INSERT INTO `ent_rel` (`id`, `id1`, `id2`, `name`, `description`, `content_file_
 --
 
 CREATE TABLE IF NOT EXISTS `file` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `description` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `file` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
@@ -285,8 +283,7 @@ CREATE TABLE IF NOT EXISTS `file` (
   `type` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
   `created` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `modified` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `modified` varchar(45) CHARACTER SET latin1 DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=45 ;
 
 --
@@ -304,7 +301,7 @@ INSERT INTO `file` (`id`, `name`, `description`, `file`, `path`, `type`, `size`,
 --
 
 CREATE TABLE IF NOT EXISTS `menu` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `parent` int(12) NOT NULL DEFAULT '0',
   `label` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `icon` int(12) DEFAULT NULL,
@@ -312,8 +309,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `task` int(12) DEFAULT NULL,
   `link` text COLLATE utf8_unicode_ci,
   `created` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `modified` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `modified` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=61 ;
 
 --
@@ -332,7 +328,7 @@ INSERT INTO `menu` (`id`, `parent`, `label`, `icon`, `site`, `task`, `link`, `cr
 --
 
 CREATE TABLE IF NOT EXISTS `meta` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `title` text COLLATE utf8_unicode_ci,
   `keywords` text COLLATE utf8_unicode_ci,
   `description` text COLLATE utf8_unicode_ci,
@@ -340,9 +336,8 @@ CREATE TABLE IF NOT EXISTS `meta` (
   `copyright` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `indexed` tinyint(1) DEFAULT NULL COMMENT 'Index content',
   `follow` tinyint(1) DEFAULT NULL COMMENT 'Follow links',
-  `cache` tinyint(1) DEFAULT NULL COMMENT 'Should content be cached',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=181 ;
+  `cache` tinyint(1) DEFAULT NULL COMMENT 'Should content be cached'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=182 ;
 
 --
 -- Dumping data for table `meta`
@@ -351,154 +346,10 @@ CREATE TABLE IF NOT EXISTS `meta` (
 INSERT INTO `meta` (`id`, `title`, `keywords`, `description`, `author`, `copyright`, `indexed`, `follow`, `cache`) VALUES
 (1, 'Admin Dashboard', NULL, 'The admin dashboard', 'Dragonfly', 'Dragonfly', NULL, NULL, NULL),
 (2, 'Lite', 'content management, webbuilder', 'The main WebBuilder website', 'Robin Stoker', 'Robin Stoker 2013', 1, 1, 1),
-(10, 'Lite Domain Test', NULL, 'Testing the domain functionality', 'Michael Dwoodley', NULL, 1, 1, 1),
 (11, 'Forums', 'WebBuilder Forums Keywords', 'WebBuilder Forums Description', 'WebBuilder', 'Robin Stoker', 1, 1, 1),
-(35, 'gfdgfdgfd', NULL, 'gfdgfdgfdgfd', NULL, NULL, NULL, NULL, NULL),
-(36, 'gfdsg', NULL, 'fdsgfdsgfds', NULL, NULL, NULL, NULL, NULL),
-(37, 'gfdsg', NULL, 'fdsgfdsgfds', NULL, NULL, NULL, NULL, NULL),
-(38, 'gfdsg', NULL, 'fdsgfdsgfds', NULL, NULL, NULL, NULL, NULL),
-(39, 'gfdsg', NULL, 'fdsgfdsgfds', NULL, NULL, NULL, NULL, NULL),
-(40, 'gfdsg', NULL, 'fdsgfdsgfds', NULL, NULL, NULL, NULL, NULL),
-(41, 'gfdsg', NULL, 'fdsgfdsgfds', NULL, NULL, NULL, NULL, NULL),
-(42, 'gfdsg', NULL, 'fdsgfdsgfds', NULL, NULL, NULL, NULL, NULL),
-(43, 'gfdsg', NULL, 'fdsgfdsgfds', NULL, NULL, NULL, NULL, NULL),
-(44, 'fdsafdsaf', NULL, 'dsafdsafdsafdsa', 'fdsafdsafdsa', NULL, NULL, NULL, NULL),
-(45, 'fdsafdsaf', NULL, 'dsafdsafdsafdsa', 'fdsafdsafdsa', NULL, NULL, NULL, NULL),
-(46, 'Fifth fifth', NULL, 'Gncgncgcgn', NULL, NULL, NULL, NULL, NULL),
-(47, 'Fifth fifth', NULL, 'Gncgncgcgn', NULL, NULL, NULL, NULL, NULL),
-(48, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(49, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(51, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(52, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(53, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(54, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(55, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(56, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(57, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(58, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(59, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(61, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(62, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(63, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(64, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(65, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(66, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(67, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(68, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(69, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(70, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(71, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(72, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(73, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(74, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(75, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(76, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(77, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(78, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(79, NULL, NULL, 'hgfhdhgfdhfd', NULL, NULL, NULL, NULL, NULL),
-(80, NULL, NULL, 'hgfhdhgfdhfd', NULL, NULL, NULL, NULL, NULL),
-(81, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(82, 'fdfd', NULL, 'sfdsfdsfdsfds', 'fdsfdsfds', 'fdsfds', NULL, NULL, NULL),
-(83, 'fdfd', NULL, 'sfdsfdsfdsfds', 'fdsfdsfds', 'fdsfds', NULL, NULL, NULL),
-(84, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(85, 'vcxvcxvcx', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(86, 'WebBernet Life', NULL, 'Description', NULL, NULL, NULL, NULL, NULL),
-(87, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(88, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(89, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(90, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(91, NULL, NULL, 'ghghjkghk', 'ghjghjk', NULL, NULL, NULL, NULL),
-(92, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(93, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(94, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(95, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(96, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(97, 'gfdgfd', NULL, 'gfdgfdgfdgfd', NULL, NULL, NULL, NULL, NULL),
-(98, 'jhgfjhg', NULL, 'jhfgjhfg', 'jhfgjhfgjh', NULL, NULL, NULL, NULL),
-(99, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(101, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(102, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(103, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(104, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(105, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(106, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(107, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(108, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(109, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(110, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(111, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(112, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(113, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(114, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(115, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(116, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(117, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(118, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(119, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(120, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(121, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(122, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(123, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(124, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(125, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(126, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(127, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(128, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(129, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(130, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(131, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(132, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(133, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(134, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(135, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(136, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(137, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(138, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(139, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(140, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(141, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(142, NULL, NULL, 'Hdoscbvidnciskcso', NULL, NULL, NULL, NULL, NULL),
-(143, NULL, NULL, 'Ncosnvuf', NULL, NULL, NULL, NULL, NULL),
-(144, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(145, 'Jdobndkd', 'Vedferdvd,vrdvrssvt,very mulga,czaeyoda,ethic crew,', 'Ncdid.  Do doe o e e define FDA I''d on', 'Djdmdmd djdisow', 'Jendndnd. Ddkdosk', 1, 1, 1),
-(146, 'Rigs gdsvj', NULL, 'Dumvduokb ther kogcsd.  Kobfdn. Hjkdsgjo.', NULL, NULL, NULL, NULL, NULL),
-(147, 'Sibhkll', NULL, 'Boorsxhitdgkpphv', 'Jogecnkhv', NULL, 1, 1, 1),
+(57, 'Entity Module', 'Entity, Module', 'The Entity Module', 'Robin Stoker', 'Robin Stoker', 1, 1, 1),
 (148, 'YMAA South Africa', 'Kung-fu, Thai Chi, Power Yoga, Kettleball', 'Yang''s Martial Arts Academy', 'YMAA South Africa', 'YMAA', 1, 1, 1),
-(149, 'test save permissions', 'nbvnbv', 'nvnbvcnbvc', 'nbvnbvcnb', 'nbvcnbvc', NULL, NULL, NULL),
-(150, 'fdsfdsfds', NULL, 'fdfds', 'fdsfds', 'fdsfds', NULL, NULL, NULL),
-(151, 'fdsfdsfds', NULL, 'fdfds', 'fdsfds', 'fdsfds', NULL, NULL, NULL),
-(152, 'fdsfdsfds', NULL, 'fdfds', 'fdsfds', 'fdsfds', NULL, NULL, NULL),
-(153, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(154, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(155, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(156, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(157, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(158, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(159, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(160, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(161, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(162, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(163, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(164, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(165, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(166, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(167, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(168, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(169, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(170, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(171, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(172, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(173, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(174, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(175, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(176, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(177, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(178, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(179, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(180, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(181, 'Modules', 'manage modules', 'Manage modules', NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -507,31 +358,31 @@ INSERT INTO `meta` (`id`, `title`, `keywords`, `description`, `author`, `copyrig
 --
 
 CREATE TABLE IF NOT EXISTS `module` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `folder` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `file` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `namespace` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `class` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `meta_id` int(12) DEFAULT NULL,
   `access` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=58 ;
 
 --
 -- Dumping data for table `module`
 --
 
-INSERT INTO `module` (`id`, `name`, `folder`, `file`, `namespace`, `class`, `access`, `created`, `modified`) VALUES
-(11, 'Sites', 'sites', 'mod.sites.php', 'b7a01bbc136a8b8c8ee85ae03743e61456513e66', 'sites', 'public', '1320857535', NULL),
-(12, 'Modules', 'modules', 'mod.modules.php', 'd7fe1772f9d314b150786179a6c79ce6252800f2', 'modules', 'public', '1320857549', NULL),
-(13, 'Tasks', 'tasks', 'mod.tasks.php', 'b80ec46a8d75653d6a1d5f563f0ba0132feaaaaa', 'tasks', 'public', '1320857556', NULL),
-(14, 'Pages', 'pages', 'mod.pages.php', 'a1e56b1719819be07494b142bdac61ecc1b8685b', 'pages', 'public', '1320857636', NULL),
-(15, 'Themes', 'themes', 'mod.pages.php', 'b6e652365a32f6a8b58c8c967e06b122da3b185c', 'themes', 'public', '1320862491', NULL),
-(53, 'Dashboard', 'dashboard', 'mod.dashboard.php', 'cc3bd702dd8950297dcb450b56c47710c05ddd38', 'dashboard', 'public', '1321472161', NULL),
-(56, 'Menu', 'menu', 'mod.menu.php', 'b65573df2fb6bd349278d490c1fd3749eea79f33', 'menu', 'public', '1321566423', NULL),
-(57, 'Entity', 'entity', 'mod.entity.php', 'adc4b25ee284f0780e39bc7a63393381dcd6eea0', 'entity', 'public', '1400091921', NULL);
+INSERT INTO `module` (`id`, `name`, `folder`, `file`, `namespace`, `class`, `meta_id`, `access`, `created`, `modified`) VALUES
+(11, 'Sites', 'sites', 'mod.sites.php', 'b7a01bbc136a8b8c8ee85ae03743e61456513e66', 'sites', NULL, 'public', '1320857535', NULL),
+(12, 'Modules', 'modules', 'mod.modules.php', 'd7fe1772f9d314b150786179a6c79ce6252800f2', 'modules', 181, 'login', '1320857549', '1428085790'),
+(13, 'Tasks', 'tasks', 'mod.tasks.php', 'b80ec46a8d75653d6a1d5f563f0ba0132feaaaaa', 'tasks', NULL, 'public', '1320857556', NULL),
+(14, 'Pages', 'pages', 'mod.pages.php', 'a1e56b1719819be07494b142bdac61ecc1b8685b', 'pages', NULL, 'public', '1320857636', NULL),
+(15, 'Themes', 'themes', 'mod.pages.php', 'b6e652365a32f6a8b58c8c967e06b122da3b185c', 'themes', NULL, 'public', '1320862491', NULL),
+(53, 'Dashboard', 'dashboard', 'mod.dashboard.php', 'cc3bd702dd8950297dcb450b56c47710c05ddd38', 'dashboard', NULL, 'public', '1321472161', NULL),
+(56, 'Menu', 'menu', 'mod.menu.php', 'b65573df2fb6bd349278d490c1fd3749eea79f33', 'menu', NULL, 'public', '1321566423', NULL),
+(57, 'Entity', 'entity', 'mod.entity.php', 'adc4b25ee284f0780e39bc7a63393381dcd6eea0', 'entity', 57, 'public', '1400091921', '1428066061');
 
 -- --------------------------------------------------------
 
@@ -564,7 +415,7 @@ INSERT INTO `permissions` (`site_id`, `module_id`, `task_id`, `user_id`, `user_g
 --
 
 CREATE TABLE IF NOT EXISTS `site` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `folder` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `default` tinyint(1) DEFAULT NULL,
@@ -575,8 +426,7 @@ CREATE TABLE IF NOT EXISTS `site` (
   `logo_file_id` int(12) DEFAULT NULL,
   `access` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=125 ;
 
 --
@@ -633,14 +483,13 @@ INSERT INTO `site__module` (`site_id`, `module_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `task` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `module_id` int(12) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `task` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `access` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=63 ;
 
 --
@@ -689,12 +538,11 @@ INSERT INTO `task` (`id`, `module_id`, `name`, `task`, `access`, `created`, `mod
 --
 
 CREATE TABLE IF NOT EXISTS `theme` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `folder` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` int(12) NOT NULL,
-  `modified` int(12) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `modified` int(12) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=46 ;
 
 --
@@ -712,13 +560,12 @@ INSERT INTO `theme` (`id`, `name`, `folder`, `created`, `modified`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `theme_layout` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` int(12) NOT NULL,
   `modified` int(12) DEFAULT NULL,
-  `theme_id` int(12) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `theme_id` int(12) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=51 ;
 
 --
@@ -739,13 +586,12 @@ INSERT INTO `theme_layout` (`id`, `name`, `file`, `created`, `modified`, `theme_
 --
 
 CREATE TABLE IF NOT EXISTS `url` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `foreignid` int(12) NOT NULL,
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `table` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `pk` text COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
+  `pk` text COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `url`
@@ -771,7 +617,16 @@ INSERT INTO `url` (`id`, `foreignid`, `url`, `table`, `pk`) VALUES
 (17, 59, 'Add-Entity', 'task', 'id'),
 (18, 60, 'Save-Entity', 'task', 'id'),
 (19, 61, 'Edit-Entity', 'task', 'id'),
-(20, 62, 'Delete-Entity', 'task', 'id');
+(20, 62, 'Delete-Entity', 'task', 'id'),
+(21, 12, 'Modules', 'module', 'id'),
+(22, 23, 'Edit-Module', 'task', 'id'),
+(23, 22, 'Add-Module', 'task', 'id'),
+(24, 25, 'Delete-Module', 'task', 'id'),
+(25, 24, 'Save-Module', 'task', 'id'),
+(26, 13, 'Tasks', 'module', 'id'),
+(27, 15, 'Themes', 'module', 'id'),
+(28, 53, 'Dashboard', 'module', 'id'),
+(29, 56, 'Menus', 'module', 'id');
 
 -- --------------------------------------------------------
 
@@ -780,14 +635,13 @@ INSERT INTO `url` (`id`, `foreignid`, `url`, `table`, `pk`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `nick` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lastlogin` int(10) DEFAULT NULL,
   `created` int(10) NOT NULL,
-  `modified` int(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `modified` int(10) DEFAULT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=66 ;
 
 --
@@ -795,7 +649,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `nick`, `email`, `password`, `lastlogin`, `created`, `modified`) VALUES
-(65, 'admin', 'robin@stoker.co.za', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 1409257670, 0, NULL);
+(65, 'admin', 'robin@stoker.co.za', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 1428085801, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -804,11 +658,10 @@ INSERT INTO `user` (`id`, `nick`, `email`, `password`, `lastlogin`, `created`, `
 --
 
 CREATE TABLE IF NOT EXISTS `user_group` (
-  `id` int(12) NOT NULL AUTO_INCREMENT,
+`id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` int(10) NOT NULL,
-  `modified` int(10) NOT NULL,
-  PRIMARY KEY (`id`)
+  `modified` int(10) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=69 ;
 
 --
@@ -838,6 +691,157 @@ CREATE TABLE IF NOT EXISTS `user__user_group` (
 INSERT INTO `user__user_group` (`user_id`, `user_group_id`) VALUES
 (65, 66);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ent`
+--
+ALTER TABLE `ent`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ent_rel`
+--
+ALTER TABLE `ent_rel`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `file`
+--
+ALTER TABLE `file`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `meta`
+--
+ALTER TABLE `meta`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `module`
+--
+ALTER TABLE `module`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `site`
+--
+ALTER TABLE `site`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `task`
+--
+ALTER TABLE `task`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `theme`
+--
+ALTER TABLE `theme`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `theme_layout`
+--
+ALTER TABLE `theme_layout`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `url`
+--
+ALTER TABLE `url`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_group`
+--
+ALTER TABLE `user_group`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ent`
+--
+ALTER TABLE `ent`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=206;
+--
+-- AUTO_INCREMENT for table `ent_rel`
+--
+ALTER TABLE `ent_rel`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `file`
+--
+ALTER TABLE `file`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+--
+-- AUTO_INCREMENT for table `meta`
+--
+ALTER TABLE `meta`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=182;
+--
+-- AUTO_INCREMENT for table `module`
+--
+ALTER TABLE `module`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
+--
+-- AUTO_INCREMENT for table `site`
+--
+ALTER TABLE `site`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=125;
+--
+-- AUTO_INCREMENT for table `task`
+--
+ALTER TABLE `task`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+--
+-- AUTO_INCREMENT for table `theme`
+--
+ALTER TABLE `theme`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+--
+-- AUTO_INCREMENT for table `theme_layout`
+--
+ALTER TABLE `theme_layout`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+--
+-- AUTO_INCREMENT for table `url`
+--
+ALTER TABLE `url`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=66;
+--
+-- AUTO_INCREMENT for table `user_group`
+--
+ALTER TABLE `user_group`
+MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=69;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

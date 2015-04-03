@@ -3,7 +3,7 @@
 namespace mod\d7fe1772f9d314b150786179a6c79ce6252800f2;
 
 /**
- * The Site Admin Library
+ * The Modules Admin Library
  */
 class modulesadmin
 {
@@ -111,7 +111,7 @@ class modulesadmin
 	}*/
 
 /**
- * Save modules enabled for a site.
+ * Save sites enabled for a module.
  * @param integer $siteid The ID of the site to save relationships for
  * @param array $post $_POST data
  * @return string Return the base directory of the site

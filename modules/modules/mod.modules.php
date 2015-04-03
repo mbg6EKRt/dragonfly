@@ -122,15 +122,11 @@ class modules
 	{
 		global $paths, $url;
 		
-		
-
 		// Process existing data
 
-		if ( array_key_exists('default', $data) && $data['default'] == 1 ) $data['default'] = 'Yes';
 		$data['created'] = date('Y-m-d', $data['created']);
-		if ( empty( $data['domain'] ) ) $data['domain'] = 'No domain';
 		
-		// Add some data that we gonna use in the template
+		// Add some data that we going use in the row template
 		
 		$data['editajaxurl'] = $url->getsiteurl( modules::MOD_NAMESPACE, 'edit', $data['url'], $paths->view );
 		$data['deleteajaxurl'] = $url->getsiteurl( modules::MOD_NAMESPACE, 'delete', $data['url'], $paths->view );
@@ -255,7 +251,7 @@ class modules
 		// Get the permissions form
 		
 		$data['permissionsform'] = $user->permissionsform( 0, $moduleid, 0, 0, 0, 0, '', $data['access'], FALSE );
-
+		
 		// Get the html
 		
 		echo process( $form, $data );
@@ -267,6 +263,10 @@ class modules
 	function save( )
 	{
 		global $db, $url, $meta, $module, $user, $paths;
+		
+		require_once( dirname( __FILE__ ).'/lib/lib.moduleadmin.php' );
+		$lib = '\\'.__NAMESPACE__.'\\modulesadmin';
+		$adminlib = new $lib();
 		
 		//debug($_POST);die();
 		
@@ -301,6 +301,10 @@ class modules
 		// Get the module id
 		
 		$moduleid = $_POST['id'];
+		
+		// Save sites this module is enabled on
+		
+		$adminlib->savesites($moduleid, $_POST);
 		
 		// Set the response based on whether we are creating a new module or updating an existing one
 
