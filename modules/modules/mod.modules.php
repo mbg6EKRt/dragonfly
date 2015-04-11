@@ -65,7 +65,7 @@ class modules
 		// List query
 
 		$sql = "SELECT * FROM `{$module->table}`
-				LEFT JOIN `{$url->table}` ON `{$module->table}`.`{$module->columns['id']['field']}`=`{$url->table}`.`{$url->columns['foreignid']['field']}`";
+				LEFT JOIN `{$url->table}` ON `{$module->table}`.`{$module->columns['id']['field']}`=`{$url->table}`.`{$url->columns['foreignid']['field']}` AND `{$url->table}`.`{$url->columns['table']['field']}`='{$module->table}'";
 		if ( !empty( $_GET['search'] ) ) 
 		{
 			$sql .= " WHERE `{$module->table}`.`{$module->columns['name']['field']}` LIKE '%{$_GET['search']}%'";
@@ -170,6 +170,10 @@ class modules
 		// Get the permissions form
 		
 		$data['permissionsform'] = $user->permissionsform( 0, 0, 0, 0, 0, 0, '', '', FALSE );
+		
+		// Generate a namespace
+		
+		$data['namespace'] = hash('sha1',time().microtime());
 
 		// Form html template
 
@@ -197,7 +201,7 @@ class modules
 
 		$sql = "SELECT *, module.id as module_id FROM `{$module->table}`
 				LEFT JOIN `{$meta->table}` ON `{$meta->table}`.`{$meta->columns['id']['field']}`=`{$module->table}`.`{$module->columns['meta']['field']}`
-				INNER JOIN `{$url->table}` ON `{$url->table}`.`{$url->columns['foreignid']['field']}`=`{$module->table}`.`{$module->columns['id']['field']}`
+				INNER JOIN `{$url->table}` ON `{$url->table}`.`{$url->columns['foreignid']['field']}`=`{$module->table}`.`{$module->columns['id']['field']}` AND `{$url->table}`.`{$url->columns['table']['field']}`='{$module->table}'
 				WHERE `{$module->table}`.`{$module->columns['id']['field']}`={$moduleid}";
 		$data = $db->exec( $sql );
 		$data = $data[0];

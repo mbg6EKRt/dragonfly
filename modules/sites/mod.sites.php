@@ -67,7 +67,7 @@ class sites
 
 		$sql = "SELECT * FROM `{$site->table}`
 				LEFT JOIN `{$meta->table}` ON `{$site->table}`.`{$site->columns['meta']['field']}`=`{$meta->table}`.`{$meta->columns['id']['field']}`
-				LEFT JOIN `{$url->table}` ON `{$site->table}`.`{$site->columns['id']['field']}`=`{$url->table}`.`{$url->columns['foreignid']['field']}`";
+				LEFT JOIN `{$url->table}` ON `{$site->table}`.`{$site->columns['id']['field']}`=`{$url->table}`.`{$url->columns['foreignid']['field']}` AND `{$url->table}`.`{$url->columns['table']['field']}`='{$site->table}'";
 		if ( !empty( $_GET['search'] ) ) 
 		{
 			$sql .= " WHERE `{$site->table}`.`{$site->columns['name']['field']}` LIKE '%{$_GET['search']}%'";
@@ -189,7 +189,7 @@ class sites
 
 		$sql = "SELECT *, site.id as site_id FROM `{$site->table}`
 				INNER JOIN `{$meta->table}` ON `{$meta->table}`.`{$meta->columns['id']['field']}`=`{$site->table}`.`{$site->columns['meta']['field']}`
-				INNER JOIN `{$url->table}` ON `{$url->table}`.`{$url->columns['foreignid']['field']}`=`{$site->table}`.`{$site->columns['id']['field']}`
+				INNER JOIN `{$url->table}` ON `{$url->table}`.`{$url->columns['foreignid']['field']}`=`{$site->table}`.`{$site->columns['id']['field']}` AND `{$url->table}`.`{$url->columns['table']['field']}`='{$site->table}'
 				WHERE `{$site->table}`.`{$site->columns['id']['field']}`={$siteid}";
 		$data = $db->exec( $sql );
 		$data = $data[0];

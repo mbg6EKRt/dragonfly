@@ -13,7 +13,7 @@
 			<a onclick="javascript:show('sites');" class="clickable _wb50">Sites</a>
 			<a onclick="javascript:show('security');" class="clickable _wb50">Security</a>
 			<!-- a onclick="javascript:show('save');$('#addeditsite').submit();" class="clickable _wb50">Save</a -->
-			<a onclick="javascript:show('save');save();" class="clickable _wb50">Save</a>
+			<a onclick="javascript:show('save');save();" class="clickable _wb50 submit">Save</a>
 		
 		</span>
 
@@ -28,7 +28,7 @@
 
 			<tr>
 
-				<td>
+				<td class="top">
 
 					<label>
 
@@ -51,6 +51,38 @@
 
 					</label>
 
+				</td>
+				
+				<td class="_50 top">
+				
+					<label>
+
+						<span class="_33">Folder</span>
+						<span><input type="text" name="folder" id="folder" value="{$folder}" /></span>
+
+					</label>
+				
+					<label>
+
+						<span class="_33">File</span>
+						<span><input type="text" name="file" id="file" value="{$file}" /></span>
+
+					</label>
+				
+					<label>
+
+						<span class="_33">Namespace</span>
+						<span><input type="text" name="namespace" id="namespace" value="{$namespace}" /></span>
+
+					</label>
+				
+					<label>
+
+						<span class="_33">Class</span>
+						<span><input type="text" name="class" id="class" value="{$class}" /></span>
+
+					</label>
+				
 				</td>
 
 			</tr>

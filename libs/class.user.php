@@ -285,7 +285,7 @@ class user
 	function getaccess($siteid = 0, $moduleid = 0, $taskid = 0, $userid = 0, $groupid = 0, $objectid = 0, $objecttable = '')
 	{
 		global $db, $error, $config;
-
+		
 		$first = TRUE;
 
 		// Get the SQL query
