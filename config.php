@@ -12,7 +12,7 @@ $config->db = Array(
 		'port' => '',
 		'db' => 'dragonfly',
 		'user' => 'root',
-		'pass' => 'pass1word2'
+		'pass' => ''
 		);
 
 // Configure urls

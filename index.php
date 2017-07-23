@@ -1,12 +1,16 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Load the base
 
 require_once( 'base/base.php' );
 
 // Load system config
 
-require_once( $paths->get( 'rootpath', 'config.php' ) );
+require_once( $paths->get( 'rootpath', '../config/dragonfly/config.php' ) ); // store main config outside the repo (with sample config remaining in the root project folder)
 
 // Connect to the database
 

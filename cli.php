@@ -11,7 +11,7 @@ require_once( 'base/base.php' );
 
 // Load system config
 
-require_once( $paths->get( 'rootpath', 'config.php' ) );
+require_once( $paths->get( 'rootpath', '../config/dragonfly/config.php' ) );
 
 // Connect to the database
 
