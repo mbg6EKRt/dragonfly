@@ -20,6 +20,7 @@ class page
 
 		// Set system variables to be used in the template
 
+		$data['rooturl'] = $paths->get( 'rooturl' );
 		$data['templateurl'] = $paths->get( 'themeurl', $theme->theme['folder'] );
 		$data['defaultTemplate'] = $paths->get( 'themeurl', 'default' );
 

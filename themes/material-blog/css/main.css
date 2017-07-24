@@ -1,0 +1,35 @@
+body {
+	font: 12px sans-serif;
+	color: #303030;
+	background-color: #fff;
+}
+
+hr {
+	height: 1px;
+	color: #707070;
+	background-color: #707070;
+	border: 0;
+}
+
+.main {
+	margin:50px;
+	padding: 1px;
+	background-color: #FAFAFA;
+	border-radius: 15px;
+}
+
+.main td {
+	padding:20px;
+	background-color: #C0DDC0;
+	width: 33%;
+}
+
+.main td:first-child {
+	background-color: #DDC0C0;
+	border-radius: 12px 0 0 12px;
+}
+
+.main td:last-child {
+	background-color: #C0C0DD;
+	border-radius: 0 12px 12px 0;
+}

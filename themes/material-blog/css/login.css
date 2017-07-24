@@ -1,0 +1,62 @@
+body {
+	font: 14px sans-serif;
+	background: url('../images/bg.gif') 50% 0 repeat;
+}
+
+fieldset {
+	display: inline-block;
+	padding: 7px 14px 14px 14px;
+	border-radius: 10px;
+	border: 0;
+	background: url('../../default/images/gradients/bw25.png') 50% 100% repeat-x;
+}
+
+fieldset legend {
+	text-align: left;
+	font: bold 14px sans-serif;
+	padding: 14px;
+	border: 0;
+	border-radius: 10px;
+	border-top: 3px solid #ffffff;
+	border-bottom: 3px solid #ffffff;
+	background: #FFFFFF;
+	color: #FFFFFF;
+	background: url('../../default/images/gradients/bw25.png') 50% 0% repeat-x;
+}
+
+fieldset label {
+	display: block;
+	text-align: left;
+	padding: 2px;
+	padding-left: 10px;
+	color: #FFFFFF;
+}
+
+fieldset label span {
+	font: bold 14px sans-serif;
+	display: inline-block;
+	width: 150px;
+}
+
+input {
+	font: bold 13px sans-serif;
+	border: 0;
+	border-radius: 5px;
+	padding: 10px;
+	background: #FFFFFF;
+}
+
+input[type="submit"] {
+	height: 36px;
+	width: 60px;
+}
+
+.main {
+	text-align: center;
+	color: #FFFFFF;
+	padding: 30px;
+}
+
+.login {
+	margin-top: 50px;
+}
