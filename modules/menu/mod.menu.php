@@ -39,18 +39,27 @@ class menu
 /**
  * The main entry point for the module
  */
-	function main( )
+	function start( $context )
 	{
 		global $task;
 
+		// Set the context
+
+		$this->context = $context;
+		unset( $context );
+
+		debug($this->context);
+
 		// Check which task we are accessing
 
-		switch ( $task->task )
+		switch ( $this->context->task['task'] )
 		{
 			// Display the menu
 
 			case 'display':
-				$this->display();
+				$req = explode('/', $this->context->request);
+				$id = $req[count($req) - 1];
+				$this->display($id);
 			break;
 		}
 	}
