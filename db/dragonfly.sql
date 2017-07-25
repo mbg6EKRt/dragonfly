@@ -1,20 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.6deb1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 03, 2015 at 08:41 PM
--- Server version: 5.5.40-0ubuntu1
--- PHP Version: 5.5.12-2ubuntu4.3
+-- Host: localhost:3306
+-- Generation Time: Jul 25, 2017 at 11:14 PM
+-- Server version: 5.6.35
+-- PHP Version: 7.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `dragonfly`
@@ -26,14 +20,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `ent`
 --
 
-CREATE TABLE IF NOT EXISTS `ent` (
-`id` int(12) NOT NULL,
+CREATE TABLE `ent` (
+  `id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `content_file_id` int(12) DEFAULT NULL,
   `created` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=206 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `ent`
@@ -243,8 +237,8 @@ INSERT INTO `ent` (`id`, `name`, `description`, `content_file_id`, `created`, `m
 -- Table structure for table `ent_rel`
 --
 
-CREATE TABLE IF NOT EXISTS `ent_rel` (
-`id` int(12) NOT NULL,
+CREATE TABLE `ent_rel` (
+  `id` int(12) NOT NULL,
   `id1` int(12) DEFAULT NULL,
   `id2` int(12) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -252,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `ent_rel` (
   `content_file_id` int(12) DEFAULT NULL,
   `created` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `ent_rel`
@@ -274,8 +268,8 @@ INSERT INTO `ent_rel` (`id`, `id1`, `id2`, `name`, `description`, `content_file_
 -- Table structure for table `file`
 --
 
-CREATE TABLE IF NOT EXISTS `file` (
-`id` int(11) NOT NULL,
+CREATE TABLE `file` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `description` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `file` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
@@ -284,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `file` (
   `size` int(11) DEFAULT NULL,
   `created` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `modified` varchar(45) CHARACTER SET latin1 DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `file`
@@ -300,8 +294,8 @@ INSERT INTO `file` (`id`, `name`, `description`, `file`, `path`, `type`, `size`,
 -- Table structure for table `menu`
 --
 
-CREATE TABLE IF NOT EXISTS `menu` (
-`id` int(12) NOT NULL,
+CREATE TABLE `menu` (
+  `id` int(12) NOT NULL,
   `parent` int(12) NOT NULL DEFAULT '0',
   `label` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `icon` int(12) DEFAULT NULL,
@@ -310,7 +304,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `link` text COLLATE utf8_unicode_ci,
   `created` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `modified` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=61 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `menu`
@@ -318,8 +312,9 @@ CREATE TABLE IF NOT EXISTS `menu` (
 
 INSERT INTO `menu` (`id`, `parent`, `label`, `icon`, `site`, `task`, `link`, `created`, `modified`) VALUES
 (58, 0, 'Admin Menu', NULL, NULL, NULL, NULL, '1322073658', NULL),
-(59, 58, 'Add Site', NULL, NULL, 17, NULL, '1322074415', NULL),
-(60, 58, 'Add Module', NULL, NULL, 22, NULL, '1322167413', NULL);
+(59, 58, 'Sites', NULL, NULL, 16, NULL, '1322074415', NULL),
+(60, 58, 'Modules', NULL, NULL, 21, NULL, '1322167413', NULL),
+(61, 58, 'Tasks', NULL, NULL, 26, NULL, '1501005224', NULL);
 
 -- --------------------------------------------------------
 
@@ -327,8 +322,8 @@ INSERT INTO `menu` (`id`, `parent`, `label`, `icon`, `site`, `task`, `link`, `cr
 -- Table structure for table `meta`
 --
 
-CREATE TABLE IF NOT EXISTS `meta` (
-`id` int(12) NOT NULL,
+CREATE TABLE `meta` (
+  `id` int(12) NOT NULL,
   `title` text COLLATE utf8_unicode_ci,
   `keywords` text COLLATE utf8_unicode_ci,
   `description` text COLLATE utf8_unicode_ci,
@@ -337,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `meta` (
   `indexed` tinyint(1) DEFAULT NULL COMMENT 'Index content',
   `follow` tinyint(1) DEFAULT NULL COMMENT 'Follow links',
   `cache` tinyint(1) DEFAULT NULL COMMENT 'Should content be cached'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=182 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `meta`
@@ -348,7 +343,7 @@ INSERT INTO `meta` (`id`, `title`, `keywords`, `description`, `author`, `copyrig
 (2, 'Lite', 'content management, webbuilder', 'The main WebBuilder website', 'Robin Stoker', 'Robin Stoker 2013', 1, 1, 1),
 (11, 'Forums', 'WebBuilder Forums Keywords', 'WebBuilder Forums Description', 'WebBuilder', 'Robin Stoker', 1, 1, 1),
 (57, 'Entity Module', 'Entity, Module', 'The Entity Module', 'Robin Stoker', 'Robin Stoker', 1, 1, 1),
-(148, 'YMAA South Africa', 'Kung-fu, Thai Chi, Power Yoga, Kettleball', 'Yang''s Martial Arts Academy', 'YMAA South Africa', 'YMAA', 1, 1, 1),
+(148, 'Materialize Blog', 'Materialize, CSS, framework', 'Blogging about Google Materialize CSS framework.', 'Robin Stoker', 'Robin Stoker', 1, 1, 1),
 (181, 'Modules', 'manage modules', 'Manage modules', NULL, NULL, 0, 0, 0);
 
 -- --------------------------------------------------------
@@ -357,8 +352,8 @@ INSERT INTO `meta` (`id`, `title`, `keywords`, `description`, `author`, `copyrig
 -- Table structure for table `module`
 --
 
-CREATE TABLE IF NOT EXISTS `module` (
-`id` int(12) NOT NULL,
+CREATE TABLE `module` (
+  `id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `folder` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `file` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -368,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `module` (
   `access` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `module`
@@ -390,7 +385,7 @@ INSERT INTO `module` (`id`, `name`, `folder`, `file`, `namespace`, `class`, `met
 -- Table structure for table `permissions`
 --
 
-CREATE TABLE IF NOT EXISTS `permissions` (
+CREATE TABLE `permissions` (
   `site_id` int(12) NOT NULL DEFAULT '0',
   `module_id` int(12) NOT NULL DEFAULT '0',
   `task_id` int(12) NOT NULL DEFAULT '0',
@@ -414,8 +409,8 @@ INSERT INTO `permissions` (`site_id`, `module_id`, `task_id`, `user_id`, `user_g
 -- Table structure for table `site`
 --
 
-CREATE TABLE IF NOT EXISTS `site` (
-`id` int(12) NOT NULL,
+CREATE TABLE `site` (
+  `id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `folder` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `default` tinyint(1) DEFAULT NULL,
@@ -427,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `site` (
   `access` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=125 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `site`
@@ -435,9 +430,9 @@ CREATE TABLE IF NOT EXISTS `site` (
 
 INSERT INTO `site` (`id`, `name`, `folder`, `default`, `default_task`, `default_layout`, `domain`, `meta_id`, `logo_file_id`, `access`, `created`, `modified`) VALUES
 (8, 'Lite', 'g4ud9so3i5', NULL, 41, 46, 'webbuilder.co.za', 2, NULL, 'public', '1320787207', '1363852143'),
-(9, 'Admin', 'pc6r9wi4hd', NULL, 55, 49, NULL, 1, NULL, 'rights', '1320787263', '1380908680'),
-(64, 'WebBuilder Forums', 'h27si6odsn', NULL, 41, 46, 'www.webbuilder.co.za', 11, NULL, 'login', '1324058349', '1363896180'),
-(124, 'YMAA South Africa', 'fy3pbiccy7nm8', 1, 41, 46, 'www.ymaasa.co.za', 148, NULL, 'public', '1363892197', '1363894921');
+(9, 'Admin', 'pc6r9wi4hd', NULL, 55, 49, '', 1, NULL, 'rights', '1320787263', '1380908680'),
+(64, 'WebBuilder Forums', 'h27si6odsn', NULL, 41, 46, '', 11, NULL, 'login', '1324058349', '1363896180'),
+(124, 'Materialize Blog', 'fy3pbiccy7nm8', 1, 41, 51, '', 148, NULL, 'public', '1363892197', '1363894921');
 
 -- --------------------------------------------------------
 
@@ -445,7 +440,7 @@ INSERT INTO `site` (`id`, `name`, `folder`, `default`, `default_task`, `default_
 -- Table structure for table `site__module`
 --
 
-CREATE TABLE IF NOT EXISTS `site__module` (
+CREATE TABLE `site__module` (
   `site_id` int(12) NOT NULL,
   `module_id` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -482,15 +477,15 @@ INSERT INTO `site__module` (`site_id`, `module_id`) VALUES
 -- Table structure for table `task`
 --
 
-CREATE TABLE IF NOT EXISTS `task` (
-`id` int(12) NOT NULL,
+CREATE TABLE `task` (
+  `id` int(12) NOT NULL,
   `module_id` int(12) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `task` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `access` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `modified` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=63 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `task`
@@ -529,7 +524,8 @@ INSERT INTO `task` (`id`, `module_id`, `name`, `task`, `access`, `created`, `mod
 (59, 57, 'Add Entity', 'add', 'public', '1400417564', NULL),
 (60, 57, 'Save Entity', 'save', 'public', '1400420198', NULL),
 (61, 57, 'Edit Entity', 'edit', 'public', '1400924275', NULL),
-(62, 57, 'Delete Entity', 'delete', 'public', '1400924275', NULL);
+(62, 57, 'Delete Entity', 'delete', 'public', '1400924275', NULL),
+(63, 56, 'Display Menu', 'display', 'public', '1501008750', NULL);
 
 -- --------------------------------------------------------
 
@@ -537,13 +533,13 @@ INSERT INTO `task` (`id`, `module_id`, `name`, `task`, `access`, `created`, `mod
 -- Table structure for table `theme`
 --
 
-CREATE TABLE IF NOT EXISTS `theme` (
-`id` int(12) NOT NULL,
+CREATE TABLE `theme` (
+  `id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `folder` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` int(12) NOT NULL,
   `modified` int(12) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `theme`
@@ -551,7 +547,8 @@ CREATE TABLE IF NOT EXISTS `theme` (
 
 INSERT INTO `theme` (`id`, `name`, `folder`, `created`, `modified`) VALUES
 (44, 'Admin', 'admin', 1321467413, NULL),
-(45, 'Lite', 'lite', 1321467413, NULL);
+(45, 'Lite', 'lite', 1321467413, NULL),
+(46, 'Material Blog', 'material-blog', 1500917053, NULL);
 
 -- --------------------------------------------------------
 
@@ -559,14 +556,14 @@ INSERT INTO `theme` (`id`, `name`, `folder`, `created`, `modified`) VALUES
 -- Table structure for table `theme_layout`
 --
 
-CREATE TABLE IF NOT EXISTS `theme_layout` (
-`id` int(12) NOT NULL,
+CREATE TABLE `theme_layout` (
+  `id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` int(12) NOT NULL,
   `modified` int(12) DEFAULT NULL,
   `theme_id` int(12) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=51 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `theme_layout`
@@ -577,7 +574,9 @@ INSERT INTO `theme_layout` (`id`, `name`, `file`, `created`, `modified`, `theme_
 (47, 'Login', 'login.html', 1321467713, NULL, 45),
 (48, 'News', 'news.html', 1321467713, NULL, 45),
 (49, 'General', 'index.html', 1321467868, NULL, 44),
-(50, 'Login', 'login.html', 1321467868, NULL, 44);
+(50, 'Login', 'login.html', 1321467868, NULL, 44),
+(51, 'General', 'index.html', 1500917200, NULL, 46),
+(52, 'Login', 'login.html', 1500917222, NULL, 46);
 
 -- --------------------------------------------------------
 
@@ -585,13 +584,13 @@ INSERT INTO `theme_layout` (`id`, `name`, `file`, `created`, `modified`, `theme_
 -- Table structure for table `url`
 --
 
-CREATE TABLE IF NOT EXISTS `url` (
-`id` int(11) NOT NULL,
+CREATE TABLE `url` (
+  `id` int(11) NOT NULL,
   `foreignid` int(12) NOT NULL,
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `table` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `pk` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `url`
@@ -626,7 +625,8 @@ INSERT INTO `url` (`id`, `foreignid`, `url`, `table`, `pk`) VALUES
 (26, 13, 'Tasks', 'module', 'id'),
 (27, 15, 'Themes', 'module', 'id'),
 (28, 53, 'Dashboard', 'module', 'id'),
-(29, 56, 'Menus', 'module', 'id');
+(29, 56, 'Menus', 'module', 'id'),
+(30, 63, 'display-menu', 'task', 'id');
 
 -- --------------------------------------------------------
 
@@ -634,22 +634,22 @@ INSERT INTO `url` (`id`, `foreignid`, `url`, `table`, `pk`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
-`id` int(12) NOT NULL,
+CREATE TABLE `user` (
+  `id` int(12) NOT NULL,
   `nick` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `lastlogin` int(10) DEFAULT NULL,
   `created` int(10) NOT NULL,
   `modified` int(10) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=66 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `nick`, `email`, `password`, `lastlogin`, `created`, `modified`) VALUES
-(65, 'admin', 'robin@stoker.co.za', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 1428085801, 0, NULL);
+(65, 'admin', 'robin@stoker.co.za', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 1500829133, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -657,12 +657,12 @@ INSERT INTO `user` (`id`, `nick`, `email`, `password`, `lastlogin`, `created`, `
 -- Table structure for table `user_group`
 --
 
-CREATE TABLE IF NOT EXISTS `user_group` (
-`id` int(12) NOT NULL,
+CREATE TABLE `user_group` (
+  `id` int(12) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` int(10) NOT NULL,
   `modified` int(10) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=69 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user_group`
@@ -679,7 +679,7 @@ INSERT INTO `user_group` (`id`, `name`, `created`, `modified`) VALUES
 -- Table structure for table `user__user_group`
 --
 
-CREATE TABLE IF NOT EXISTS `user__user_group` (
+CREATE TABLE `user__user_group` (
   `user_id` int(12) NOT NULL,
   `user_group_id` int(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -699,79 +699,79 @@ INSERT INTO `user__user_group` (`user_id`, `user_group_id`) VALUES
 -- Indexes for table `ent`
 --
 ALTER TABLE `ent`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ent_rel`
 --
 ALTER TABLE `ent_rel`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `file`
 --
 ALTER TABLE `file`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `meta`
 --
 ALTER TABLE `meta`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `module`
 --
 ALTER TABLE `module`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `site`
 --
 ALTER TABLE `site`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `task`
 --
 ALTER TABLE `task`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `theme`
 --
 ALTER TABLE `theme`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `theme_layout`
 --
 ALTER TABLE `theme_layout`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `url`
 --
 ALTER TABLE `url`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_group`
 --
 ALTER TABLE `user_group`
- ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -781,67 +781,64 @@ ALTER TABLE `user_group`
 -- AUTO_INCREMENT for table `ent`
 --
 ALTER TABLE `ent`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=206;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 --
 -- AUTO_INCREMENT for table `ent_rel`
 --
 ALTER TABLE `ent_rel`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `file`
 --
 ALTER TABLE `file`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 --
 -- AUTO_INCREMENT for table `meta`
 --
 ALTER TABLE `meta`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=182;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
 --
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=58;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `site`
 --
 ALTER TABLE `site`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=125;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 --
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 --
 -- AUTO_INCREMENT for table `theme`
 --
 ALTER TABLE `theme`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `theme_layout`
 --
 ALTER TABLE `theme_layout`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- AUTO_INCREMENT for table `url`
 --
 ALTER TABLE `url`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=66;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 --
 -- AUTO_INCREMENT for table `user_group`
 --
 ALTER TABLE `user_group`
-MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=69;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
