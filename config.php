@@ -17,13 +17,13 @@ $config->db = Array(
 
 // Configure urls
 
-$paths->set( '3rdpartyurl', '3rdparty', 'url' );
+$paths->set( 'vendorurl', 'vendor', 'url' );
 $paths->set( 'moduleurl', 'modules', 'url' );
 $paths->set( 'themeurl', 'themes', 'url' );
 
 // Configure paths
 
-$paths->set( '3rdparty', '3rdparty', 'path' );
+$paths->set( 'vendor', 'vendor', 'path' );
 $paths->set( 'lib', 'libs', 'path' );
 $paths->set( 'module', 'modules', 'path' );
 $paths->set( 'theme', 'themes', 'path' );
@@ -32,15 +32,15 @@ $paths->set( 'sites', 'sites', 'path' );
 
 // Template engine path config
 
-$paths->set( 'templateengine', '3rdparty/smarty/Smarty.class.php', 'path' );
+$paths->set( 'templateengine', 'vendor/smarty/Smarty.class.php', 'path' );
 $paths->set( 'templateengine_compile_dir', 'files/smarty/compiled', 'path' );
 
 // Core Javascripts
 
 //$config->javascript['jquery'] = 'http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js';
-$config->javascript['jquery'] = $paths->get('3rdpartyurl', 'jquery/jquery-1.11.1.min.js');
-//$config->javascript['jqueryui'] = $paths->get( '3rdpartyurl', 'jquery/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js' );
-//$config->javascript['jqueryuicss'] = $paths->get( '3rdpartyurl', 'jquery/jquery-ui-1.8.18.custom/css/smoothness/jquery-ui-1.8.18.custom.css' );
+$config->javascript['jquery'] = $paths->get('vendorurl', 'jquery/jquery-1.11.1.min.js');
+//$config->javascript['jqueryui'] = $paths->get( 'vendorurl', 'jquery/jquery-ui-1.8.18.custom/js/jquery-ui-1.8.18.custom.min.js' );
+//$config->javascript['jqueryuicss'] = $paths->get( 'vendorurl', 'jquery/jquery-ui-1.8.18.custom/css/smoothness/jquery-ui-1.8.18.custom.css' );
 
 // Over-ride sub-embed restriction
 // Be careful with this as it is easy to create infinite loops

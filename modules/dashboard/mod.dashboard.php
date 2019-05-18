@@ -47,7 +47,7 @@ class dashboard
 			'imagesurl' => $paths->get( 'rooturl', 'modules/dashboard/img/icons/', 'file' ),
 
 			'templateurl' => $paths->get( 'themeurl', $theme->theme['folder'] ),
-			'isotope' => $paths->get( '3rdpartyurl', 'jquery/isotope/jquery.isotope.min.js' )
+			'isotope' => $paths->get( 'vendorurl', 'jquery/isotope/jquery.isotope.min.js' )
 		);
 		
 		echo process($layout, $data);

@@ -31,13 +31,13 @@ function GetRoot($What = 'path')
 
 $dataPath = GetRoot();
 
-if (!ereg('3rdparty', $dataPath)) { $dataPath = $dataPath.'/3rdparty/Webmail/data'; }//if
+if (!ereg('vendor', $dataPath)) { $dataPath = $dataPath.'/vendor/Webmail/data'; }//if
 else { $dataPath = $dataPath.'/data'; }//else
 
 /*
 Original code:
 */
 
-//$dataPath = 'c:/wamp/www/ePropertyManager/3rdparty/Webmail/data';
+//$dataPath = 'c:/wamp/www/ePropertyManager/vendor/Webmail/data';
 
 ?>
