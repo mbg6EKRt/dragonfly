@@ -30,3 +30,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Ignore smarty compiled files but keep the directory
+/files/smarty/compiled/*
+!/files/smarty/compiled/.gitkeep

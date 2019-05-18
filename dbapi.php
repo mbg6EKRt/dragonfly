@@ -25,5 +25,3 @@ $dbapi		= new \lib\dbapi( );
 // Get the db result
 
 $dbapi->getrequest( );
-
-?>

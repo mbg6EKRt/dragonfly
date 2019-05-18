@@ -51,5 +51,3 @@ $user->securerequest( );
 // Raw task output (no theme)
 
 echo $page->content( );
-
-?>

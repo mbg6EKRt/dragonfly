@@ -28,5 +28,3 @@ if ( file_exists( $file ) && stristr( $file, $paths->get( 'rootpath' ) ) )
 	$files = new \lib\files( );
 	$files->stream( $file );
 }
-
-?>

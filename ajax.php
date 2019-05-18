@@ -46,5 +46,3 @@ $user->securerequest( );
 // Raw task output (no theme) - could be html, xml, rss, atom, any output from the task
 
 echo $page->content( );
-
-?>

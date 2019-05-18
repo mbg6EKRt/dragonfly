@@ -241,36 +241,77 @@ function process( $file, $data, $source = 'file' )
 }
 
 /**
- * Debug an object or variable - output the contents of a variable using print_r()
- * @param mixed $var The object or variable to dump to the screen
- * @param string $title Give the debug message a title
+ * Debug a variable by displaying its contents
+ * @param mixed $var Variable to display in the debug message
+ * @param string $title Title of the debug message
+ * @return none
  */
-function debug( $var, $title = '' )
+function debug($var, $title = '', $force = FALSE)
 {
 	global $config;
 
-	if ( !empty( $config ) && ( $config->debug['enabled'] == TRUE ) )
+	// Determine whether we should show debug messages or not
+
+	$showDebug = FALSE;
+	if (isset($config->debug['enabled']))
 	{
-		if ( is_string( $var ) )
-		{
-			// Replace special characters in output (special chars are { } as these are reserved by the template engine)
+		if ($config->debug['enabled'] === TRUE || $force == TRUE) $showDebug = TRUE;
+	}
+
+	// If we are allowed to show debug messages, show them
+
+	if ($showDebug === TRUE)
+	{
+		// Check if we are in cli mode or webserver/browser mode
+
+		if (php_sapi_name() == "cli") $html = FALSE;
+		else $html = TRUE;
+
+		// Show html
 		
-			$specialchars = Array( '<' => '&lt;', '>' => '&gt;', '{' => '&#123;', '}' => '&#125;' );
-			
-			foreach ( $specialchars as $char => $html_entity )
-			{
-				$var = str_replace( $char, $html_entity, $var );
-			}
+		if (is_string($var)){
+			$var = str_replace('<', '&lt;', $var);
+			$var = str_replace('>', '&gt;', $var);
 		}
+
+		// Get some useful info/stats to display
+
+		$memoryUsage = getFriendlySize(memory_get_usage());
+		$memoryPeak = getFriendlySize(memory_get_peak_usage());
+		$memoryLimit = ini_get('memory_limit');
+		$time = date("H:i:s");
+
+		$stacktrace = debug_backtrace();
+		$calledFrom = "{$stacktrace[0]['file']} on line {$stacktrace[0]['line']}";
+
+		// Display the debug message
 		
-		echo '<table cellpadding="10" cellspacing="0" style="background: #EAEAEA;">';
-
-		if ( !empty( $title ) ) echo '<tr><td style="padding-bottom: 0; font: bold 14px Arial; color: #000000;">'.$title.'</td></tr>';
-
-		echo '<tr><td><pre style="margin: 0; padding: 10px; color: #000000; background: #FFFFFF; display: block; border-top: 1px solid #AAAAAA;">';
-		print_r( $var );
-		echo '</pre></td></tr></table>';
+		if ($html)
+		{
+			echo "<div style='text-align:left;background-color:#CCC;padding:15px;'>";
+			if (!empty($title)) echo "<pre style='font-weight:bold;text-align:left;color:#000;margin:0;padding:0 0 15px 15px;'>{$title}</pre>";
+			echo "<pre style='text-align:left;color:#000;background-color:#FFF;display:block;margin:0;padding:15px;'>";
+		}
+		echo "[{$memoryUsage}/{$memoryPeak}/{$memoryLimit}] {$time} - {$calledFrom}\n";
+		print_r($var);	
+		
+		if ($html) echo "</pre></div>";
+		else if (!is_array($var)) echo "\n";
 	}
 }
 
-?>
+/**
+ * Calculate human-readable file or memory sizes
+ */
+function getFriendlySize($value)
+{
+    $metric = Array('B', 'K', 'M', 'G', 'T', 'P');
+    $currentMetric = 0;
+    while (($value / 1024) > 1)
+    {
+        $value = $value / 1024;
+        $currentMetric++;
+    }
+    $value = round($value, 2);
+    return "{$value}{$metric[$currentMetric]}";
+}

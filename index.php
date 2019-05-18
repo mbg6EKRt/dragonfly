@@ -50,5 +50,3 @@ $user->securerequest( );
 // Get the page
 
 $page->get( );
-
-?>

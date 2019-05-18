@@ -12,7 +12,7 @@ $config->db = Array(
 		'port' => '',
 		'db' => 'dragonfly',
 		'user' => 'root',
-		'pass' => 'root'
+		'pass' => ''
 		);
 
 // Configure urls
@@ -50,5 +50,3 @@ $config->javascript['jquery'] = $paths->get('3rdpartyurl', 'jquery/jquery-1.11.1
 //				the page will never get loaded.
 
 $config->views['embed']['allowSubEmbeds'] = FALSE;
-
-?>
