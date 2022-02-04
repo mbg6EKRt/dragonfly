@@ -105,7 +105,7 @@ class db
 			$pdoerror = $e->getMessage( );
 
 			$arr = explode( ']', $pdoerror );
-			$sql = $dbconfig[type].":dbname=*****;host=*****";
+			$sql = $dbconfig['type'].":dbname=*****;host=*****";
 
 			$pdoerror = Array(
 					'_error' => substr(trim($arr[1]),1),
